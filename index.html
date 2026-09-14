@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>北京六城区高温健康风险预报</title>
+  <style>
+    :root { font-family: system-ui, "Microsoft YaHei", sans-serif; color: #172335; background: #f4f7fa; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #17324d; color: white; padding: 2.2rem max(1rem, calc((100vw - 1100px)/2)); }
+    h1 { margin: 0 0 .5rem; font-size: clamp(1.5rem, 4vw, 2.2rem); }
+    header p { margin: .3rem 0; color: #dbe8f3; }
+    main { max-width: 1100px; margin: auto; padding: 1.5rem 1rem 3rem; }
+    h2 { font-size: 1.25rem; margin: 1.8rem 0 .8rem; }
+    .note { color: #516174; font-size: .92rem; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: .75rem; }
+    .card, .panel { background: white; border: 1px solid #e0e7ed; border-radius: 10px; padding: 1rem; }
+    .card span { display: block; color: #56677b; font-size: .9rem; }
+    .card strong { display: block; margin-top: .4rem; font-size: 1.45rem; }
+    .risks { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; margin-top: .75rem; }
+    .risks strong { font-size: 1.1rem; }
+    .days { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }
+    .day h3 { margin: 0 0 .55rem; font-size: 1rem; }
+    .day p { margin: .35rem 0; line-height: 1.45; }
+    .chart-wrap { overflow-x: auto; }
+    svg { display: block; min-width: 650px; width: 100%; height: 260px; }
+    .error { color: #a42d2d; }
+    footer { margin-top: 1.5rem; border-top: 1px solid #d7e0e8; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>北京六城区高温健康风险预报</h1>
+    <p>东城 · 西城 · 朝阳 · 海淀 · 丰台 · 石景山</p>
+    <p id="updated">正在读取预报数据…</p>
+  </header>
+  <main>
+    <p class="note">数据为 Open-Meteo 提供的 ECMWF IFS 未来预报，经六城区面积加权；逐小时序列由 Open-Meteo 统一处理。仅作项目研究展示，不代表实测值。</p>
+    <h2>今日气象与体感温度</h2>
+    <div id="today" class="grid"></div>
+    <div id="risks" class="risks"></div>
+    <h2>未来 7 天</h2>
+    <div id="days" class="days"></div>
+    <h2>逐小时气温趋势</h2>
+    <div class="panel chart-wrap"><svg id="chart" role="img" aria-label="未来逐小时气温曲线"></svg></div>
+    <footer class="note">“未进入热效应风险分级”表示 AT 低于所用文献的低风险起点，不等于“无风险”。预报日期按北京时间计算；非完整自然日会单独标示。数据更新由 GitHub 定时任务执行，实际时间以页面显示为准。</footer>
+  </main>
+  <script>
+    const parse = text => {
+      const [head, ...lines] = text.trim().replace(/^\uFEFF/, '').split(/\r?\n/);
+      const keys = head.split(',');
+      return lines.filter(Boolean).map(line => Object.fromEntries(line.split(',').map((value, i) => [keys[i], value])));
+    };
+    const value = (n, unit = '') => Number.isFinite(Number(n)) ? `${Number(n).toFixed(1)}${unit}` : '—';
+    const card = (label, v) => `<div class="card"><span>${label}</span><strong>${v}</strong></div>`;
+    const fetchCsv = async path => {
+      const response = await fetch(path, { cache: 'no-store' });
+      if (!response.ok) throw new Error(`无法读取 ${path}`);
+      return parse(await response.text());
+    };
+    function drawChart(rows) {
+      const svg = document.querySelector('#chart');
+      const data = rows.map(r => Number(r.temperature_c)).filter(Number.isFinite);
+      if (!data.length) return;
+      const w = 980, h = 260, pad = 32, min = Math.floor(Math.min(...data) - 1), max = Math.ceil(Math.max(...data) + 1);
+      const x = i => pad + i * (w - 2 * pad) / Math.max(1, data.length - 1);
+      const y = n => h - pad - (n - min) * (h - 2 * pad) / Math.max(1, max - min);
+      const points = data.map((n, i) => `${x(i)},${y(n)}`).join(' ');
+      svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+      svg.innerHTML = `<line x1="${pad}" y1="${h-pad}" x2="${w-pad}" y2="${h-pad}" stroke="#a5b6c5"/><polyline fill="none" stroke="#dc622b" stroke-width="2.5" points="${points}"/><text x="${pad}" y="18" fill="#516174">${max}℃</text><text x="${pad}" y="${h-6}" fill="#516174">${min}℃</text><text x="${w-175}" y="${h-6}" fill="#516174">${data.length} 个预报小时</text>`;
+    }
+    async function load() {
+      try {
+        const [hourly, daily, risk] = await Promise.all([
+          fetchCsv('data/current/beijing_center_forecast_hourly.csv'),
+          fetchCsv('data/current/beijing_center_forecast_daily.csv'),
+          fetchCsv('data/processed/beijing_center_health_risk.csv')
+        ]);
+        if (!hourly.length || !daily.length || !risk.length) throw new Error('预报数据为空');
+        const todayDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+        const today = risk.find(r => r.forecast_date === todayDate) || risk[0];
+        document.querySelector('#updated').textContent = `数据更新：${hourly[0].update_time}（北京时间）`;
+        document.querySelector('#today').innerHTML = [
+          card('日平均气温', value(today.tmean_c, '℃')), card('日最高气温', value(today.tmax_c, '℃')),
+          card('平均相对湿度', value(today.rhmean_pct, '%')), card('平均风速', value(today.vmean_ms, ' m/s')),
+          card('体感温度 AT', value(today.at_c, '℃'))
+        ].join('');
+        document.querySelector('#risks').innerHTML = [card('0–64 岁热效应风险', today.risk_0_64), card('≥65 岁热效应风险', today.risk_65_plus)].join('');
+        document.querySelector('#days').innerHTML = risk.map(r => `<article class="panel day"><h3>${r.forecast_date}${r.is_complete_day === 'True' ? '' : '（非完整日）'}</h3><p>平均 ${value(r.tmean_c, '℃')} · 最高 ${value(r.tmax_c, '℃')}</p><p>湿度 ${value(r.rhmean_pct, '%')} · 风速 ${value(r.vmean_ms, ' m/s')}</p><p>AT ${value(r.at_c, '℃')}</p><p>0–64 岁：${r.risk_0_64}</p><p>≥65 岁：${r.risk_65_plus}</p></article>`).join('');
+        drawChart(hourly);
+      } catch (error) {
+        document.querySelector('#updated').textContent = '数据读取失败';
+        document.querySelector('#today').innerHTML = `<p class="error">${error.message}</p>`;
+      }
+    }
+    load();
+  </script>
+</body>
+</html>

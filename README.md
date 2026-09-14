@@ -17,6 +17,6 @@ python scripts/update_all.py
 - `data/current/beijing_center_forecast_daily.csv`：北京时间每日气象数据，含 `hour_count` 和 `is_complete_day`。
 - `data/processed/beijing_center_health_risk.csv`：每日 AT 与两年龄组风险。
 
-仓库中的三个结果 CSV 是提交时的快照，不会因为本地计划任务运行而自动更新 GitHub。`website/` 目前尚无网页；仓库创建本身也不会让别人看到持续更新的网页。后续需实现展示页面，并把更新任务部署到持续运行的服务器或自动化平台。
+仓库根目录的 `index.html` 是静态展示页，直接读取上述三个 CSV。`.github/workflows/update-forecast.yml` 每 6 小时运行一次计算链，成功后将新 CSV 提交到仓库。GitHub 定时任务可能晚于设定时间启动，请以网页上的数据更新时间为准。公开网址由 GitHub Pages 提供。
 
 低于文献热效应低风险起点时，结果标为“未进入热效应风险分级”，并不表示“无风险”。历史 ERA5-Land 试运行与本仓库的未来预报是不同数据链。
