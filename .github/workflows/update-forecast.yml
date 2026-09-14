@@ -8,6 +8,8 @@ on:
 
 permissions:
   contents: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: forecast-update
@@ -16,6 +18,8 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,3 +37,13 @@ jobs:
             git commit -m "Update forecast data"
             git push
           fi
+      - name: Prepare site
+        run: |
+          mkdir -p site/data/current site/data/processed
+          cp index.html site/
+          cp data/current/*.csv site/data/current/
+          cp data/processed/*.csv site/data/processed/
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
