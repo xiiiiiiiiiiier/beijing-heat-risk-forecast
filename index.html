@@ -80,7 +80,7 @@
         if (!hourly.length || !daily.length || !risk.length) throw new Error('预报数据为空');
         const todayDate = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Shanghai', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
         const today = risk.find(r => r.forecast_date === todayDate) || risk[0];
-        document.querySelector('#updated').textContent = `数据更新：${hourly[0].update_time}（北京时间）`;
+        document.querySelector('#updated').textContent = `数据更新：${new Intl.DateTimeFormat('zh-CN', { timeZone: 'Asia/Shanghai', dateStyle: 'medium', timeStyle: 'medium', hour12: false }).format(new Date(hourly[0].update_time))}（北京时间）`;
         document.querySelector('#today').innerHTML = [
           card('日平均气温', value(today.tmean_c, '℃')), card('日最高气温', value(today.tmax_c, '℃')),
           card('平均相对湿度', value(today.rhmean_pct, '%')), card('平均风速', value(today.vmean_ms, ' m/s')),
@@ -98,3 +98,4 @@
   </script>
 </body>
 </html>
+
