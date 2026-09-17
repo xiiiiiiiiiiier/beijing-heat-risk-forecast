@@ -44,7 +44,7 @@ def build_units(source_dir):
         core_geometry = unary_union([shape(districts[c]["geometry"]) for c in core_codes])
         units[f"{city}_core"] = {"city": city, "name": "主城区", "codes": core_codes,
                                  "geometry": core_geometry}
-        for code in OTHER[city]:
+        for code in (*core_codes, *OTHER[city]):
             feature = districts[code]
             units[f"{city}_{code}"] = {"city": city, "name": feature["properties"]["name"],
                                        "codes": (code,), "geometry": shape(feature["geometry"])}

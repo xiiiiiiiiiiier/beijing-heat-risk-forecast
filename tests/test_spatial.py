@@ -10,9 +10,11 @@ from build_spatial import build_units, calculate_points
 
 
 class SpatialTest(unittest.TestCase):
-    def test_only_requested_urban_districts_are_units(self):
+    def test_all_urban_districts_are_units(self):
         units = build_units(ROOT / "data/boundary_sources")
-        self.assertEqual(len(units), 39)
+        self.assertEqual(len(units), 64)
+        self.assertIn("beijing_110101", units)
+        self.assertIn("baoding_130602", units)
         self.assertIn("beijing_110112", units)
         self.assertNotIn("shijiazhuang_130121", units)
 
