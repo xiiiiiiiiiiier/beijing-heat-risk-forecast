@@ -1,0 +1,372 @@
+[
+  {
+    "unit_id": "beijing_core",
+    "city": "beijing",
+    "name": "主城区",
+    "district_codes": [
+      110101,
+      110102,
+      110105,
+      110106,
+      110107,
+      110108
+    ],
+    "point_count": 30
+  },
+  {
+    "unit_id": "beijing_110109",
+    "city": "beijing",
+    "name": "门头沟区",
+    "district_codes": [
+      110109
+    ],
+    "point_count": 32
+  },
+  {
+    "unit_id": "beijing_110111",
+    "city": "beijing",
+    "name": "房山区",
+    "district_codes": [
+      110111
+    ],
+    "point_count": 40
+  },
+  {
+    "unit_id": "beijing_110112",
+    "city": "beijing",
+    "name": "通州区",
+    "district_codes": [
+      110112
+    ],
+    "point_count": 22
+  },
+  {
+    "unit_id": "beijing_110113",
+    "city": "beijing",
+    "name": "顺义区",
+    "district_codes": [
+      110113
+    ],
+    "point_count": 21
+  },
+  {
+    "unit_id": "beijing_110114",
+    "city": "beijing",
+    "name": "昌平区",
+    "district_codes": [
+      110114
+    ],
+    "point_count": 28
+  },
+  {
+    "unit_id": "beijing_110115",
+    "city": "beijing",
+    "name": "大兴区",
+    "district_codes": [
+      110115
+    ],
+    "point_count": 24
+  },
+  {
+    "unit_id": "beijing_110116",
+    "city": "beijing",
+    "name": "怀柔区",
+    "district_codes": [
+      110116
+    ],
+    "point_count": 46
+  },
+  {
+    "unit_id": "beijing_110117",
+    "city": "beijing",
+    "name": "平谷区",
+    "district_codes": [
+      110117
+    ],
+    "point_count": 23
+  },
+  {
+    "unit_id": "beijing_110118",
+    "city": "beijing",
+    "name": "密云区",
+    "district_codes": [
+      110118
+    ],
+    "point_count": 42
+  },
+  {
+    "unit_id": "beijing_110119",
+    "city": "beijing",
+    "name": "延庆区",
+    "district_codes": [
+      110119
+    ],
+    "point_count": 40
+  },
+  {
+    "unit_id": "tianjin_core",
+    "city": "tianjin",
+    "name": "主城区",
+    "district_codes": [
+      120101,
+      120102,
+      120103,
+      120104,
+      120105,
+      120106
+    ],
+    "point_count": 7
+  },
+  {
+    "unit_id": "tianjin_120110",
+    "city": "tianjin",
+    "name": "东丽区",
+    "district_codes": [
+      120110
+    ],
+    "point_count": 13
+  },
+  {
+    "unit_id": "tianjin_120111",
+    "city": "tianjin",
+    "name": "西青区",
+    "district_codes": [
+      120111
+    ],
+    "point_count": 15
+  },
+  {
+    "unit_id": "tianjin_120112",
+    "city": "tianjin",
+    "name": "津南区",
+    "district_codes": [
+      120112
+    ],
+    "point_count": 11
+  },
+  {
+    "unit_id": "tianjin_120113",
+    "city": "tianjin",
+    "name": "北辰区",
+    "district_codes": [
+      120113
+    ],
+    "point_count": 12
+  },
+  {
+    "unit_id": "tianjin_120114",
+    "city": "tianjin",
+    "name": "武清区",
+    "district_codes": [
+      120114
+    ],
+    "point_count": 33
+  },
+  {
+    "unit_id": "tianjin_120115",
+    "city": "tianjin",
+    "name": "宝坻区",
+    "district_codes": [
+      120115
+    ],
+    "point_count": 30
+  },
+  {
+    "unit_id": "tianjin_120116",
+    "city": "tianjin",
+    "name": "滨海新区",
+    "district_codes": [
+      120116
+    ],
+    "point_count": 54
+  },
+  {
+    "unit_id": "tianjin_120117",
+    "city": "tianjin",
+    "name": "宁河区",
+    "district_codes": [
+      120117
+    ],
+    "point_count": 27
+  },
+  {
+    "unit_id": "tianjin_120118",
+    "city": "tianjin",
+    "name": "静海区",
+    "district_codes": [
+      120118
+    ],
+    "point_count": 29
+  },
+  {
+    "unit_id": "tianjin_120119",
+    "city": "tianjin",
+    "name": "蓟州区",
+    "district_codes": [
+      120119
+    ],
+    "point_count": 33
+  },
+  {
+    "unit_id": "shijiazhuang_core",
+    "city": "shijiazhuang",
+    "name": "主城区",
+    "district_codes": [
+      130102,
+      130104,
+      130105,
+      130108
+    ],
+    "point_count": 12
+  },
+  {
+    "unit_id": "shijiazhuang_130107",
+    "city": "shijiazhuang",
+    "name": "井陉矿区",
+    "district_codes": [
+      130107
+    ],
+    "point_count": 6
+  },
+  {
+    "unit_id": "shijiazhuang_130109",
+    "city": "shijiazhuang",
+    "name": "藁城区",
+    "district_codes": [
+      130109
+    ],
+    "point_count": 21
+  },
+  {
+    "unit_id": "shijiazhuang_130110",
+    "city": "shijiazhuang",
+    "name": "鹿泉区",
+    "district_codes": [
+      130110
+    ],
+    "point_count": 17
+  },
+  {
+    "unit_id": "shijiazhuang_130111",
+    "city": "shijiazhuang",
+    "name": "栾城区",
+    "district_codes": [
+      130111
+    ],
+    "point_count": 10
+  },
+  {
+    "unit_id": "tangshan_core",
+    "city": "tangshan",
+    "name": "主城区",
+    "district_codes": [
+      130202,
+      130203,
+      130205,
+      130207
+    ],
+    "point_count": 43
+  },
+  {
+    "unit_id": "tangshan_130204",
+    "city": "tangshan",
+    "name": "古冶区",
+    "district_codes": [
+      130204
+    ],
+    "point_count": 9
+  },
+  {
+    "unit_id": "tangshan_130208",
+    "city": "tangshan",
+    "name": "丰润区",
+    "district_codes": [
+      130208
+    ],
+    "point_count": 28
+  },
+  {
+    "unit_id": "tangshan_130209",
+    "city": "tangshan",
+    "name": "曹妃甸区",
+    "district_codes": [
+      130209
+    ],
+    "point_count": 35
+  },
+  {
+    "unit_id": "handan_core",
+    "city": "handan",
+    "name": "主城区",
+    "district_codes": [
+      130403,
+      130402,
+      130404
+    ],
+    "point_count": 26
+  },
+  {
+    "unit_id": "handan_130406",
+    "city": "handan",
+    "name": "峰峰矿区",
+    "district_codes": [
+      130406
+    ],
+    "point_count": 11
+  },
+  {
+    "unit_id": "handan_130407",
+    "city": "handan",
+    "name": "肥乡区",
+    "district_codes": [
+      130407
+    ],
+    "point_count": 13
+  },
+  {
+    "unit_id": "handan_130408",
+    "city": "handan",
+    "name": "永年区",
+    "district_codes": [
+      130408
+    ],
+    "point_count": 20
+  },
+  {
+    "unit_id": "baoding_core",
+    "city": "baoding",
+    "name": "主城区",
+    "district_codes": [
+      130606,
+      130602
+    ],
+    "point_count": 10
+  },
+  {
+    "unit_id": "baoding_130607",
+    "city": "baoding",
+    "name": "满城区",
+    "district_codes": [
+      130607
+    ],
+    "point_count": 20
+  },
+  {
+    "unit_id": "baoding_130608",
+    "city": "baoding",
+    "name": "清苑区",
+    "district_codes": [
+      130608
+    ],
+    "point_count": 20
+  },
+  {
+    "unit_id": "baoding_130609",
+    "city": "baoding",
+    "name": "徐水区",
+    "district_codes": [
+      130609
+    ],
+    "point_count": 18
+  }
+]

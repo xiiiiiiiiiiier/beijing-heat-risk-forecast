@@ -3,4 +3,5 @@ __pycache__/
 .venv/
 .env
 data/raw/forecast_runs/*.csv
+data/raw/forecast_runs/**/*.csv
 !data/raw/forecast_runs/.gitkeep

@@ -20,3 +20,24 @@ python scripts/update_all.py
 仓库根目录的 `index.html` 是静态展示页，直接读取上述三个 CSV。`.github/workflows/update-forecast.yml` 每 6 小时运行一次计算链，成功后将新 CSV 提交到仓库。GitHub 定时任务可能晚于设定时间启动，请以网页上的数据更新时间为准。公开网址由 GitHub Pages 提供。
 
 低于文献热效应低风险起点时，结果标为“未进入热效应风险分级”，并不表示“无风险”。历史 ERA5-Land 试运行与本仓库的未来预报是不同数据链。
+
+## 六市研究单元
+
+北京原有六区联合预报链保留，作为回归基准。另有六市各一份主城区联合结果及其余 33 个市辖区各一份独立结果，共 39 个计算单元。具体区名、行政代码和格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 是供后续网站接入的数据，不表示已有 39 个页面。
+
+`scripts/update_units.py` 按城市合并相同的 O1280 格点请求，逐轮核对 Open-Meteo 返回坐标（距理论中心不超过 2 米且互不重复），然后按各单元自己的权重计算逐小时值、北京时间日值和两年龄组风险。固定参数是 `models=ecmwf_ifs`、`cell_selection=nearest`、`elevation=nan`。每城市的原始取数保存在 `data/raw/forecast_runs/<city>/`，不提交 Git；最新结果在 `data/current/units/` 和 `data/processed/units/`。单独更新一个城市：
+
+```powershell
+python scripts/update_units.py --city tianjin
+```
+
+不带 `--city` 时更新全部六市。GitHub Actions 每六小时执行北京原流程和六市流程，全部成功后才提交 CSV 并部署。某次失败时不会把本轮不完整输出发布到网站。
+
+空间输入来自与北京现有边界相同的第三方 [pamaforce/geojson WGS84 数据](https://github.com/pamaforce/geojson)，原始市级文件保存在 `data/boundary_sources/`。源文件使用 GB 编码；边界不是官方法定界线。`scripts/build_spatial.py` 按 O1280 实际格点中心、等面积投影下的最近中心 Voronoi 单元与研究区相交面积生成各单元权重；北京主城区继续直接使用 `data/static/forecast_points.csv` 权重。仅在边界、模型或格点选择规则改变并完成复核后重新生成：
+
+```powershell
+python -m pip install -r requirements-spatial.txt
+python scripts/build_spatial.py
+```
+
+新增单元采用《草稿.docx》的市辖区清单；县和县级市没有纳入。第三方边界与官方法定界线可能不同，正式科研发布前应核定范围和边界版本。ERA5-Land 的格点或权重不能用于本预报链。

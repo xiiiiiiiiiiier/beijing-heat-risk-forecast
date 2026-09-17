@@ -28,21 +28,24 @@ jobs:
           cache: pip
       - run: pip install -r requirements.txt
       - run: python scripts/update_all.py
+      - run: python scripts/update_units.py
       - name: Save latest forecast
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/current/*.csv data/processed/*.csv
+          git add data/current/*.csv data/processed/*.csv data/current/units/*.csv data/processed/units/*.csv
           if ! git diff --cached --quiet; then
             git commit -m "Update forecast data"
             git push
           fi
       - name: Prepare site
         run: |
-          mkdir -p site/data/current site/data/processed
+          mkdir -p site/data/current/units site/data/processed/units
           cp index.html site/
           cp data/current/*.csv site/data/current/
           cp data/processed/*.csv site/data/processed/
+          cp data/current/units/*.csv site/data/current/units/
+          cp data/processed/units/*.csv site/data/processed/units/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
