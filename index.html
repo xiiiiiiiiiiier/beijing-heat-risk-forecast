@@ -47,10 +47,10 @@
     <div class="panel chart-wrap"><svg id="chart" role="img" aria-label="未来逐小时气温曲线"></svg></div>
     <h2>研究范围与数据文件</h2>
     <div class="panel note">
-      <p>本页图表展示北京东城、西城、朝阳、海淀、丰台、石景山六区合并后的结果。数据链还为六市全部 58 个市辖区分别生成预报，并保留 6 个主城区合并结果；这些数据尚未做成独立页面。</p>
+      <p>本页图表展示北京东城、西城、朝阳、海淀、丰台、石景山六区合并后的结果。另有六市各自全部市辖区合并区域的热指数（HI）数据，每市一份；这些数据尚未做成独立页面。</p>
       <p>文件名中的城市拼音表示所属城市，六位数字表示单个市辖区；<code>core</code> 表示多个区合并计算的主城区。例如 <code>baoding_130607_daily.csv</code> 是保定满城区的每日气象数据。<code>hourly</code> 为逐小时气象数据，<code>daily</code> 为每日气象数据，<code>health_risk</code> 为每日体感温度与健康风险。</p>
       <p><a href="https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/blob/main/data/current/units/README.md">查看全部城市和区代码对照</a> · <a href="data/current/units/tianjin_core_daily.csv">查看天津主城区每日数据示例</a></p>
-      <p>另外，逐小时气温与湿度还用于计算 NOAA 热指数（HI），逐日结果取当天最高 HI，并按可能的身体影响分类。HI 与本页的 AT 年龄组风险是不同指标；新模块表格见仓库 <a href="https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/tree/main/data/processed/units">处理结果目录</a>。</p>
+      <p>每市全部市辖区的逐小时代表气温与湿度用于计算 NOAA 热指数（HI），逐日结果取当天最高 HI，并按可能的身体影响分类。HI 与本页的 AT 年龄组风险是不同指标；六市 HI 表格见仓库 <a href="https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/tree/main/data/processed/units">处理结果目录</a>。</p>
     </div>
     <footer class="note">“未进入热效应风险分级”表示 AT 低于所用文献的低风险起点，不等于“无风险”。预报日期按北京时间计算；非完整自然日会单独标示。数据更新由 GitHub 定时任务执行，实际时间以页面显示为准。</footer>
   </main>

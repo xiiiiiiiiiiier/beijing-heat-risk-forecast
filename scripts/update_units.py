@@ -171,16 +171,24 @@ def update_city(city):
         for unit_id, weights in units.items():
             hourly = weighted_hourly(raw, weights, update_time)
             daily = daily_from_hourly(hourly)
-            risk = calculate_health_risk(daily)
-            hi_hourly, hi_daily = heat_index_tables(hourly)
             for directory, suffix, frame in (("current", "hourly", hourly),
-                                              ("current", "daily", daily),
-                                              ("processed", "health_risk", risk),
-                                              ("processed", "heat_index_hourly", hi_hourly),
-                                              ("processed", "heat_index_daily", hi_daily)):
+                                              ("current", "daily", daily)):
                 target = ROOT / "data" / directory / "units" / f"{unit_id}_{suffix}.csv"
                 staged = Path(staging) / target.name
                 frame.to_csv(staged, index=False, encoding="utf-8-sig")
+                pending.append((staged, target))
+            if unit_id.endswith("_urban"):
+                hi_hourly, hi_daily = heat_index_tables(hourly)
+                for suffix, frame in (("heat_index_hourly", hi_hourly), ("heat_index_daily", hi_daily)):
+                    target = ROOT / "data/processed/units" / f"{unit_id}_{suffix}.csv"
+                    staged = Path(staging) / target.name
+                    frame.to_csv(staged, index=False, encoding="utf-8-sig")
+                    pending.append((staged, target))
+            else:
+                risk = calculate_health_risk(daily)
+                target = ROOT / "data/processed/units" / f"{unit_id}_health_risk.csv"
+                staged = Path(staging) / target.name
+                risk.to_csv(staged, index=False, encoding="utf-8-sig")
                 pending.append((staged, target))
             print(f"Calculated {unit_id}", flush=True)
         for staged, target in pending:

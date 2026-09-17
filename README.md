@@ -23,9 +23,9 @@ python scripts/update_all.py
 
 ## 六市研究单元
 
-北京原有六区联合预报链保留，作为回归基准。六市全部 58 个市辖区各有独立结果，另保留六份主城区联合结果，共 64 个计算单元。[文件名与城市、区名完整对照表](data/current/units/README.md)位于预报 CSV 同一目录；格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 是供后续网站接入的数据，不表示已有 64 个页面。
+北京原有六区联合预报链保留，作为回归基准。每个城市另有一份**全部市辖区合并区域**（`<city>_urban`），用于 HI；原有其余市辖区的单区气象与 AT 结果继续保留。[文件名与城市、区名完整对照表](data/current/units/README.md)列明具体范围；格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 供后续网站接入。
 
-独立的 NOAA Heat Index 模块读取同轮逐小时气温与相对湿度，按 [NOAA 方法](https://www.weather.gov/tbw/heatindex)计算逐小时 HI，再按北京时间取每日最高 HI；`data/processed/units/<单元编码>_heat_index_hourly.csv` 和 `_heat_index_daily.csv` 保存数值、[ECMWF 分级及可能的身体影响](https://confluence.ecmwf.int/plugins/viewsource/viewpagesrc.action?pageId=473837635)。不完整日标注但不正式分级。该模块与原有 AT 健康风险并列，不互相替代；HI 针对阴凉环境下的温湿度，不包含日晒、个人体质或实际活动量，也不是实况观测。
+独立的 NOAA Heat Index 模块**每市只计算一份全部市辖区联合结果**：读取同轮逐小时气温与相对湿度，按 [NOAA 方法](https://www.weather.gov/tbw/heatindex)计算逐小时 HI，再按北京时间取每日最高 HI；`data/processed/units/<city>_urban_heat_index_hourly.csv` 和 `_daily.csv` 保存数值、[ECMWF 分级及可能的身体影响](https://confluence.ecmwf.int/plugins/viewsource/viewpagesrc.action?pageId=473837635)。不完整日标注但不正式分级。该模块与原有 AT 健康风险并列，不互相替代；HI 针对阴凉环境下的温湿度，不包含日晒、个人体质或实际活动量，也不是实况观测。
 
 `scripts/update_units.py` 按城市合并相同的 O1280 格点请求，逐轮核对 Open-Meteo 返回坐标（距理论中心不超过 2 米且互不重复），然后按各单元自己的权重计算逐小时值、北京时间日值和两年龄组风险。固定参数是 `models=ecmwf_ifs`、`cell_selection=nearest`、`elevation=nan`。每城市的原始取数保存在 `data/raw/forecast_runs/<city>/`，不提交 Git；最新结果在 `data/current/units/` 和 `data/processed/units/`。单独更新一个城市：
 

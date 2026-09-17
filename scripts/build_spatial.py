@@ -41,10 +41,13 @@ def build_units(source_dir):
         missing = (set(core_codes) | set(OTHER[city])) - districts.keys()
         if missing:
             raise ValueError(f"{city}: missing core districts {sorted(missing)}")
+        urban_codes = (*core_codes, *OTHER[city])
+        units[f"{city}_urban"] = {"city": city, "name": "全部市辖区联合区域", "codes": urban_codes,
+                                   "geometry": unary_union([shape(districts[c]["geometry"]) for c in urban_codes])}
         core_geometry = unary_union([shape(districts[c]["geometry"]) for c in core_codes])
         units[f"{city}_core"] = {"city": city, "name": "主城区", "codes": core_codes,
                                  "geometry": core_geometry}
-        for code in (*core_codes, *OTHER[city]):
+        for code in OTHER[city]:
             feature = districts[code]
             units[f"{city}_{code}"] = {"city": city, "name": feature["properties"]["name"],
                                        "codes": (code,), "geometry": shape(feature["geometry"])}
