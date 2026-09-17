@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import sys
 import tempfile
+import time
 
 import pandas as pd
 import requests
@@ -19,6 +20,8 @@ ROOT = Path(__file__).resolve().parents[1]
 POINTS_DIR = ROOT / "data/static/units"
 API_URL = "https://api.open-meteo.com/v1/forecast"
 BEIJING = timezone(timedelta(hours=8))
+_window_start = time.monotonic()
+_requested_points = 0
 
 
 def key(lat, lon):
@@ -51,10 +54,14 @@ def load_city(city):
 
 
 def fetch_city(coordinates, update_time):
+    global _window_start, _requested_points
     rows, returned = [], set()
     items = list(coordinates.items())
     for start in range(0, len(items), 30):
         batch = items[start:start + 30]
+        if _requested_points + len(batch) > 450:
+            time.sleep(max(0, 61 - (time.monotonic() - _window_start)))
+            _window_start, _requested_points = time.monotonic(), 0
         params = {
             "latitude": ",".join(str(pair[0]) for _, pair in batch),
             "longitude": ",".join(str(pair[1]) for _, pair in batch),
@@ -64,8 +71,14 @@ def fetch_city(coordinates, update_time):
             "wind_speed_unit": "ms", "cell_selection": "nearest",
             "elevation": ",".join(["nan"] * len(batch)),
         }
-        response = requests.get(API_URL, params=params, timeout=120)
+        for attempt in range(3):
+            response = requests.get(API_URL, params=params, timeout=120)
+            if response.status_code != 429 or attempt == 2:
+                break
+            time.sleep(61)
+            _window_start, _requested_points = time.monotonic(), 0
         response.raise_for_status()
+        _requested_points += len(batch)
         data = response.json()
         locations = data if isinstance(data, list) else [data]
         if len(locations) != len(batch):
@@ -83,10 +96,10 @@ def fetch_city(coordinates, update_time):
             values = [hourly[name] for name in names]
             if len({len(value) for value in values}) != 1 or len(values[0]) != 168:
                 raise ValueError(f"Incomplete forecast: {point_key}")
-            for time, temp, rh, wind in zip(*values):
+            for forecast_time, temp, rh, wind in zip(*values):
                 if any(v is None for v in (temp, rh, wind)) or not 0 <= rh <= 100 or wind < 0:
-                    raise ValueError(f"Missing or invalid weather: {point_key} {time}")
-                rows.append({"update_time": update_time, "forecast_time": time, "key": point_key,
+                    raise ValueError(f"Missing or invalid weather: {point_key} {forecast_time}")
+                rows.append({"update_time": update_time, "forecast_time": forecast_time, "key": point_key,
                              "grid_latitude": lat, "grid_longitude": lon,
                              "api_return_latitude": actual[0], "api_return_longitude": actual[1],
                              "temperature_c": temp, "relative_humidity_pct": rh, "wind_speed_ms": wind,
