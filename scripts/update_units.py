@@ -72,7 +72,13 @@ def fetch_city(coordinates, update_time):
             "elevation": ",".join(["nan"] * len(batch)),
         }
         for attempt in range(3):
-            response = requests.get(API_URL, params=params, timeout=120)
+            try:
+                response = requests.get(API_URL, params=params, timeout=120)
+            except requests.exceptions.RequestException:
+                if attempt == 2:
+                    raise
+                time.sleep(5 * (attempt + 1))
+                continue
             if response.status_code != 429 or attempt == 2:
                 break
             time.sleep(61)

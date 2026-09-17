@@ -4,6 +4,7 @@ from unittest.mock import patch
 from pathlib import Path
 
 import pandas as pd
+import requests
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -54,6 +55,14 @@ class UnitProcessingTest(unittest.TestCase):
         self.assertEqual(len(result), 168)
         self.assertEqual(get.call_count, 2)
         sleep.assert_called()
+
+    def test_retries_network_timeout(self):
+        with patch("update_units.requests.get", side_effect=requests.exceptions.ReadTimeout) as get, \
+             patch("update_units.time.sleep") as sleep:
+            with self.assertRaises(requests.exceptions.ReadTimeout):
+                fetch_city({"39.0000000000,116.0000000000": (39, 116)}, "run")
+        self.assertEqual(get.call_count, 3)
+        self.assertEqual(sleep.call_count, 2)
 
 
 if __name__ == "__main__":
