@@ -23,7 +23,7 @@ python scripts/update_all.py
 
 ## 六市研究单元
 
-北京原有六区联合预报链保留，作为回归基准。另有六市各一份主城区联合结果及其余 33 个市辖区各一份独立结果，共 39 个计算单元。具体区名、行政代码和格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 是供后续网站接入的数据，不表示已有 39 个页面。
+北京原有六区联合预报链保留，作为回归基准。另有六市各一份主城区联合结果及其余 33 个市辖区各一份独立结果，共 39 个计算单元。[文件名与城市、区名完整对照表](data/current/units/README.md)位于预报 CSV 同一目录；格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 是供后续网站接入的数据，不表示已有 39 个页面。
 
 `scripts/update_units.py` 按城市合并相同的 O1280 格点请求，逐轮核对 Open-Meteo 返回坐标（距理论中心不超过 2 米且互不重复），然后按各单元自己的权重计算逐小时值、北京时间日值和两年龄组风险。固定参数是 `models=ecmwf_ifs`、`cell_selection=nearest`、`elevation=nan`。每城市的原始取数保存在 `data/raw/forecast_runs/<city>/`，不提交 Git；最新结果在 `data/current/units/` 和 `data/processed/units/`。单独更新一个城市：
 
