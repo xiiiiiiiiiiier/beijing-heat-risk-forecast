@@ -33,6 +33,10 @@ def get_tianjin_unit_ids():
     return get_at_unit_ids("tianjin")
 
 
+def get_shijiazhuang_unit_ids():
+    return get_at_unit_ids("shijiazhuang")
+
+
 def save_unit_results(unit_id, hourly, daily, result):
     outputs = (
         (ROOT / "data/current/units" / f"{unit_id}_hourly.csv", hourly),
@@ -79,6 +83,11 @@ def run_beijing_forecast(unit_id="beijing_core", raw=None, save=True):
 def run_tianjin_forecast(unit_id="tianjin_core", raw=None, save=True):
     """Return daily weather, AT, and age-group risks for one Tianjin unit."""
     return run_city_forecast("tianjin", unit_id, raw, save)
+
+
+def run_shijiazhuang_forecast(unit_id="shijiazhuang_core", raw=None, save=True):
+    """Return daily weather, AT, and age-group risks for one Shijiazhuang unit."""
+    return run_city_forecast("shijiazhuang", unit_id, raw, save)
 
 
 def main():
