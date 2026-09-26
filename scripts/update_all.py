@@ -20,9 +20,17 @@ else:
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def get_at_unit_ids(city):
+    units, _ = load_city(city)
+    return tuple(unit_id for unit_id in units if unit_id != f"{city}_urban")
+
+
 def get_beijing_unit_ids():
-    units, _ = load_city("beijing")
-    return tuple(unit_id for unit_id in units if unit_id != "beijing_urban")
+    return get_at_unit_ids("beijing")
+
+
+def get_tianjin_unit_ids():
+    return get_at_unit_ids("tianjin")
 
 
 def save_unit_results(unit_id, hourly, daily, result):
@@ -36,11 +44,10 @@ def save_unit_results(unit_id, hourly, daily, result):
         frame.to_csv(path, index=False, encoding="utf-8-sig")
 
 
-def run_beijing_forecast(unit_id="beijing_core", raw=None, save=True):
-    """Return daily weather, AT, and age-group risks for one Beijing unit."""
-    units, coordinates = load_city("beijing")
-    if unit_id not in units or unit_id == "beijing_urban":
-        raise ValueError(f"Unsupported Beijing unit_id: {unit_id}")
+def run_city_forecast(city, unit_id, raw=None, save=True):
+    units, coordinates = load_city(city)
+    if unit_id not in units or unit_id == f"{city}_urban":
+        raise ValueError(f"Unsupported {city.title()} unit_id: {unit_id}")
     weights = units[unit_id]
     update_time = (
         datetime.now(BEIJING).isoformat(timespec="seconds")
@@ -57,11 +64,21 @@ def run_beijing_forecast(unit_id="beijing_core", raw=None, save=True):
 
     if save:
         save_unit_results(unit_id, hourly, daily, result)
-        if unit_id == "beijing_core":
+        if city == "beijing" and unit_id == "beijing_core":
             save_hourly(hourly)
             save_daily(daily)
             save_result(result)
     return result
+
+
+def run_beijing_forecast(unit_id="beijing_core", raw=None, save=True):
+    """Return daily weather, AT, and age-group risks for one Beijing unit."""
+    return run_city_forecast("beijing", unit_id, raw, save)
+
+
+def run_tianjin_forecast(unit_id="tianjin_core", raw=None, save=True):
+    """Return daily weather, AT, and age-group risks for one Tianjin unit."""
+    return run_city_forecast("tianjin", unit_id, raw, save)
 
 
 def main():

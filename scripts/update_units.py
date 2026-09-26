@@ -14,9 +14,11 @@ import pandas as pd
 import requests
 
 if __package__:
+    from .calculate_daily_weather import calculate_daily_weather
     from .calculate_health_risk import calculate_health_risk
     from .heat_index import heat_index_tables
 else:
+    from calculate_daily_weather import calculate_daily_weather
     from calculate_health_risk import calculate_health_risk
     from heat_index import heat_index_tables
 
@@ -149,18 +151,7 @@ def weighted_hourly(raw, weights, update_time):
 
 
 def daily_from_hourly(hourly):
-    data = hourly.copy()
-    data["forecast_time"] = pd.to_datetime(data.forecast_time)
-    data["forecast_date"] = data.forecast_time.dt.date
-    daily = data.groupby("forecast_date", as_index=False).agg(
-        tmean_c=("temperature_c", "mean"), tmax_c=("temperature_c", "max"),
-        rhmean_pct=("relative_humidity_pct", "mean"), vmean_ms=("wind_speed_ms", "mean"),
-        hour_count=("forecast_time", "size"))
-    daily["is_complete_day"] = daily.hour_count.eq(24)
-    daily.insert(0, "update_time", hourly.update_time.iloc[0])
-    daily["source"] = "Open-Meteo"
-    daily["model"] = "ecmwf_ifs"
-    return daily
+    return calculate_daily_weather(hourly)
 
 
 def update_city(city):
