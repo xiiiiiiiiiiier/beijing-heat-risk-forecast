@@ -1,53 +1,78 @@
-"""Refresh the forecast and its derived CSV files in order."""
+"""Run Beijing's forecast-to-health-risk calculation in one Python call."""
 
+from datetime import datetime
 from pathlib import Path
-import os
-import subprocess
 import sys
 from time import perf_counter
 
+if __package__:
+    from .calculate_center_average import save_hourly
+    from .calculate_daily_weather import calculate_daily_weather, save_daily
+    from .calculate_health_risk import RESULT_COLUMNS, calculate_health_risk, quality_control as check_health_risk, save_result
+    from .update_units import BEIJING, fetch_city, load_city, weighted_hourly
+else:
+    from calculate_center_average import save_hourly
+    from calculate_daily_weather import calculate_daily_weather, save_daily
+    from calculate_health_risk import RESULT_COLUMNS, calculate_health_risk, quality_control as check_health_risk, save_result
+    from update_units import BEIJING, fetch_city, load_city, weighted_hourly
+
 
 ROOT = Path(__file__).resolve().parents[1]
-SCRIPTS = (
-    "fetch_forecast.py",
-    "calculate_center_average.py",
-    "calculate_daily_weather.py",
-    "calculate_health_risk.py",
-)
-OUTPUTS = (
-    "data/current/beijing_center_forecast_hourly.csv",
-    "data/current/beijing_center_forecast_daily.csv",
-    "data/processed/beijing_center_health_risk.csv",
-)
+
+
+def get_beijing_unit_ids():
+    units, _ = load_city("beijing")
+    return tuple(unit_id for unit_id in units if unit_id != "beijing_urban")
+
+
+def save_unit_results(unit_id, hourly, daily, result):
+    outputs = (
+        (ROOT / "data/current/units" / f"{unit_id}_hourly.csv", hourly),
+        (ROOT / "data/current/units" / f"{unit_id}_daily.csv", daily),
+        (ROOT / "data/processed/units" / f"{unit_id}_health_risk.csv", result),
+    )
+    for path, frame in outputs:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        frame.to_csv(path, index=False, encoding="utf-8-sig")
+
+
+def run_beijing_forecast(unit_id="beijing_core", raw=None, save=True):
+    """Return daily weather, AT, and age-group risks for one Beijing unit."""
+    units, coordinates = load_city("beijing")
+    if unit_id not in units or unit_id == "beijing_urban":
+        raise ValueError(f"Unsupported Beijing unit_id: {unit_id}")
+    weights = units[unit_id]
+    update_time = (
+        datetime.now(BEIJING).isoformat(timespec="seconds")
+        if raw is None else raw["update_time"].iloc[0]
+    )
+    if raw is None:
+        selected_coordinates = {point: coordinates[point] for point in weights}
+        raw = fetch_city(selected_coordinates, update_time)
+
+    hourly = weighted_hourly(raw, weights, update_time)
+    daily = calculate_daily_weather(hourly)
+    result = calculate_health_risk(daily)[RESULT_COLUMNS]
+    check_health_risk(result)
+
+    if save:
+        save_unit_results(unit_id, hourly, daily, result)
+        if unit_id == "beijing_core":
+            save_hourly(hourly)
+            save_daily(daily)
+            save_result(result)
+    return result
 
 
 def main():
-    total_start = perf_counter()
-    env = os.environ.copy()
-    env["PYTHONIOENCODING"] = "utf-8"
-    for number, script in enumerate(SCRIPTS, 1):
-        print(f"[{number}/4] {script}：开始", flush=True)
-        start = perf_counter()
-        try:
-            result = subprocess.run([sys.executable, ROOT / "scripts" / script], cwd=ROOT, env=env)
-        except OSError as exc:
-            print(f"[{number}/4] {script}：失败（{exc}，耗时 {perf_counter() - start:.1f} 秒）", flush=True)
-            return 1
-        elapsed = perf_counter() - start
-        if result.returncode != 0:
-            print(f"[{number}/4] {script}：失败（退出码 {result.returncode}，耗时 {elapsed:.1f} 秒）", flush=True)
-            return result.returncode
-        print(f"[{number}/4] {script}：成功（耗时 {elapsed:.1f} 秒）", flush=True)
-
-    missing = False
-    for relative_path in OUTPUTS:
-        path = ROOT / relative_path
-        valid = path.is_file() and path.stat().st_size > 0
-        print(f"{'存在且非空' if valid else '缺失或为空'}：{path}", flush=True)
-        missing |= not valid
-    if not missing:
-        print(f"本轮更新完成，总耗时 {perf_counter() - total_start:.1f} 秒", flush=True)
-    return 1 if missing else 0
+    start = perf_counter()
+    try:
+        result = run_beijing_forecast()
+    except Exception as exc:
+        print(f"北京计算链失败：{type(exc).__name__}: {exc}", file=sys.stderr)
+        return 1
+    print(f"北京计算链完成：{len(result)} 个自然日，耗时 {perf_counter() - start:.1f} 秒")
+    return 0
 
 
 if __name__ == "__main__":

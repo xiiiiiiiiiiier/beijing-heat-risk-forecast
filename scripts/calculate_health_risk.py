@@ -21,6 +21,12 @@ OUTPUT_FILE = (
     / "beijing_center_health_risk.csv"
 )
 
+RESULT_COLUMNS = [
+    "update_time", "forecast_date", "tmean_c", "tmax_c", "rhmean_pct",
+    "vmean_ms", "vapor_pressure_hpa", "at_c", "risk_0_64",
+    "risk_65_plus", "hour_count", "is_complete_day", "source", "model",
+]
+
 
 def load_daily():
 
@@ -273,29 +279,7 @@ def save_result(df):
         exist_ok=True,
     )
 
-    columns = [
-        "update_time",
-        "forecast_date",
-
-        "tmean_c",
-        "tmax_c",
-        "rhmean_pct",
-        "vmean_ms",
-
-        "vapor_pressure_hpa",
-        "at_c",
-
-        "risk_0_64",
-        "risk_65_plus",
-
-        "hour_count",
-        "is_complete_day",
-
-        "source",
-        "model",
-    ]
-
-    output = df[columns]
+    output = df[RESULT_COLUMNS]
 
     output.to_csv(
         OUTPUT_FILE,

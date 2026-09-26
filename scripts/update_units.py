@@ -13,8 +13,12 @@ import time
 import pandas as pd
 import requests
 
-from calculate_health_risk import calculate_health_risk
-from heat_index import heat_index_tables
+if __package__:
+    from .calculate_health_risk import calculate_health_risk
+    from .heat_index import heat_index_tables
+else:
+    from calculate_health_risk import calculate_health_risk
+    from heat_index import heat_index_tables
 
 
 ROOT = Path(__file__).resolve().parents[1]

@@ -15,10 +15,8 @@ REQUIRED = (
 NUMERIC = ("temperature_c", "relative_humidity_pct", "wind_speed_ms")
 
 
-def main():
-    if not HOURLY.is_file():
-        raise FileNotFoundError(f"未找到 hourly 文件：{HOURLY}")
-    hourly = pd.read_csv(HOURLY)
+def calculate_daily_weather(hourly):
+    hourly = hourly.copy()
     missing = set(REQUIRED) - set(hourly.columns)
     if missing:
         raise ValueError(f"hourly 缺少字段：{', '.join(sorted(missing))}")
@@ -68,12 +66,22 @@ def main():
     if not daily["rhmean_pct"].between(0, 100).all() or (daily["vmean_ms"] < 0).any():
         raise ValueError("daily 相对湿度或风速越界")
 
-    DAILY.parent.mkdir(parents=True, exist_ok=True)
-    daily.to_csv(DAILY, index=False, encoding="utf-8-sig")
     complete = int(daily["is_complete_day"].sum())
     print(f"hourly 行数：{len(hourly)}；重复时间：{duplicates}")
     print(f"自然日：{len(daily)}；完整：{complete}；不完整：{len(daily) - complete}")
+    return daily
+
+
+def save_daily(daily):
+    DAILY.parent.mkdir(parents=True, exist_ok=True)
+    daily.to_csv(DAILY, index=False, encoding="utf-8-sig")
     print(f"输出：{DAILY}")
+
+
+def main():
+    if not HOURLY.is_file():
+        raise FileNotFoundError(f"未找到 hourly 文件：{HOURLY}")
+    save_daily(calculate_daily_weather(pd.read_csv(HOURLY)))
 
 
 if __name__ == "__main__":
