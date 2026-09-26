@@ -41,6 +41,10 @@ def get_tangshan_unit_ids():
     return get_at_unit_ids("tangshan")
 
 
+def get_handan_unit_ids():
+    return get_at_unit_ids("handan")
+
+
 def save_unit_results(unit_id, hourly, daily, result):
     outputs = (
         (ROOT / "data/current/units" / f"{unit_id}_hourly.csv", hourly),
@@ -97,6 +101,11 @@ def run_shijiazhuang_forecast(unit_id="shijiazhuang_core", raw=None, save=True):
 def run_tangshan_forecast(unit_id="tangshan_core", raw=None, save=True):
     """Return daily weather, AT, and age-group risks for one Tangshan unit."""
     return run_city_forecast("tangshan", unit_id, raw, save)
+
+
+def run_handan_forecast(unit_id="handan_core", raw=None, save=True):
+    """Return daily weather, AT, and age-group risks for one Handan unit."""
+    return run_city_forecast("handan", unit_id, raw, save)
 
 
 def main():
