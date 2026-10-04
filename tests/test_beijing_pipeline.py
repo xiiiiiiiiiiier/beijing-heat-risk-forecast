@@ -127,6 +127,7 @@ class BeijingPipelineTest(unittest.TestCase):
 
     def test_core_save_writes_unit_outputs_and_legacy_aliases(self):
         raw = make_raw("beijing_core")
+        raw["forecast_time"] = raw["forecast_time"].dt.strftime("%Y-%m-%dT%H:%M")
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             legacy_hourly = root / "current/beijing_center_forecast_hourly.csv"

@@ -142,6 +142,7 @@ def weighted_hourly(raw, weights, update_time):
         relative_humidity_pct=("relative_humidity_pct", "sum"),
         wind_speed_ms=("wind_speed_ms", "sum"),
         point_count=("key", "nunique"), weight_sum=("area_weight", "sum"))
+    hourly["forecast_time"] = pd.to_datetime(hourly["forecast_time"], errors="raise")
     if len(hourly) != 168 or not hourly.point_count.eq(expected).all():
         raise ValueError("Incomplete weighted hours")
     hourly.insert(0, "update_time", update_time)

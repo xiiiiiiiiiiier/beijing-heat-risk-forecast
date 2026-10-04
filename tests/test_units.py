@@ -26,6 +26,16 @@ class UnitProcessingTest(unittest.TestCase):
         self.assertEqual(daily.iloc[0]["hour_count"], 24)
         self.assertTrue(daily.iloc[0]["is_complete_day"])
 
+    def test_weighted_hourly_parses_api_timestamp_strings(self):
+        times = pd.date_range("2026-07-01", periods=168, freq="h")
+        raw = pd.DataFrame([
+            {"forecast_time": time.strftime("%Y-%m-%dT%H:%M"), "key": key,
+             "temperature_c": temp, "relative_humidity_pct": 50, "wind_speed_ms": 2}
+            for time in times for key, temp in (("a", 30), ("b", 34))
+        ])
+        hourly = weighted_hourly(raw, {"a": 0.25, "b": 0.75}, "2026-07-01T00:00:00+08:00")
+        self.assertTrue(pd.api.types.is_datetime64_any_dtype(hourly["forecast_time"]))
+
     def test_rejects_grid_shift(self):
         self.assertLess(coordinate_distance_m(39, 116, 39.000001, 116), 2)
         self.assertGreater(coordinate_distance_m(39, 116, 39.01, 116), 1000)
