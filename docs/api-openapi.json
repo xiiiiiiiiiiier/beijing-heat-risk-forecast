@@ -1,0 +1,1124 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "京津冀六市高温健康风险预报 API",
+    "description": "读取第一链 CSV。AT 与 HI 按现有空间范围提供，数据超过 24 小时标为陈旧。",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/status": {
+      "get": {
+        "summary": "Data Status",
+        "description": "校验六市整批数据并返回各市更新时间。陈旧数据仍保留，显示 is_stale。",
+        "operationId": "data_status_api_v1_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnapshotStatus"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "summary": "Health",
+        "description": "进程存活检查，不代表计算、数据新鲜度或 GitHub 部署正常。",
+        "operationId": "health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cities": {
+      "get": {
+        "summary": "Cities",
+        "operationId": "cities_api_v1_cities_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/City"
+                  },
+                  "type": "array",
+                  "title": "Response Cities Api V1 Cities Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/cities/{city}/units": {
+      "get": {
+        "summary": "City Units",
+        "operationId": "city_units_api_v1_cities__city__units_get",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "City"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Unit"
+                  },
+                  "title": "Response City Units Api V1 Cities  City  Units Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/units/{unit_id}/hourly": {
+      "get": {
+        "summary": "Hourly",
+        "operationId": "hourly_api_v1_units__unit_id__hourly_get",
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Unit Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forecast_Hourly_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/units/{unit_id}/daily": {
+      "get": {
+        "summary": "Daily",
+        "operationId": "daily_api_v1_units__unit_id__daily_get",
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Unit Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forecast_Daily_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/units/{unit_id}/health-risk": {
+      "get": {
+        "summary": "Health Risk",
+        "operationId": "health_risk_api_v1_units__unit_id__health_risk_get",
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Unit Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forecast_HealthRisk_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/units/{unit_id}/heat-index/hourly": {
+      "get": {
+        "summary": "Hi Hourly",
+        "operationId": "hi_hourly_api_v1_units__unit_id__heat_index_hourly_get",
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Unit Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forecast_HIHourly_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/units/{unit_id}/heat-index/daily": {
+      "get": {
+        "summary": "Hi Daily",
+        "operationId": "hi_daily_api_v1_units__unit_id__heat_index_daily_get",
+        "parameters": [
+          {
+            "name": "unit_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Unit Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Forecast_HIDaily_"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "City": {
+        "properties": {
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "unit_count": {
+            "type": "integer",
+            "title": "Unit Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "city",
+          "name",
+          "unit_count"
+        ],
+        "title": "City"
+      },
+      "CityStatus": {
+        "properties": {
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "city",
+          "update_time",
+          "is_stale"
+        ],
+        "title": "CityStatus"
+      },
+      "Daily": {
+        "properties": {
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "forecast_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Forecast Date"
+          },
+          "hour_count": {
+            "type": "integer",
+            "maximum": 24.0,
+            "minimum": 1.0,
+            "title": "Hour Count"
+          },
+          "is_complete_day": {
+            "type": "boolean",
+            "title": "Is Complete Day"
+          },
+          "tmean_c": {
+            "type": "number",
+            "title": "Tmean C"
+          },
+          "tmax_c": {
+            "type": "number",
+            "title": "Tmax C"
+          },
+          "rhmean_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Rhmean Pct"
+          },
+          "vmean_ms": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Vmean Ms"
+          }
+        },
+        "type": "object",
+        "required": [
+          "update_time",
+          "source",
+          "model",
+          "forecast_date",
+          "hour_count",
+          "is_complete_day",
+          "tmean_c",
+          "tmax_c",
+          "rhmean_pct",
+          "vmean_ms"
+        ],
+        "title": "Daily"
+      },
+      "Forecast_Daily_": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "Asia/Shanghai"
+          },
+          "data_kind": {
+            "type": "string",
+            "title": "Data Kind",
+            "default": "forecast"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "data_age_hours": {
+            "type": "number",
+            "title": "Data Age Hours"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/Daily"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "update_time",
+          "data_age_hours",
+          "is_stale",
+          "rows"
+        ],
+        "title": "Forecast[Daily]"
+      },
+      "Forecast_HIDaily_": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "Asia/Shanghai"
+          },
+          "data_kind": {
+            "type": "string",
+            "title": "Data Kind",
+            "default": "forecast"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "data_age_hours": {
+            "type": "number",
+            "title": "Data Age Hours"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/HIDaily"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "update_time",
+          "data_age_hours",
+          "is_stale",
+          "rows"
+        ],
+        "title": "Forecast[HIDaily]"
+      },
+      "Forecast_HIHourly_": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "Asia/Shanghai"
+          },
+          "data_kind": {
+            "type": "string",
+            "title": "Data Kind",
+            "default": "forecast"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "data_age_hours": {
+            "type": "number",
+            "title": "Data Age Hours"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/HIHourly"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "update_time",
+          "data_age_hours",
+          "is_stale",
+          "rows"
+        ],
+        "title": "Forecast[HIHourly]"
+      },
+      "Forecast_HealthRisk_": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "Asia/Shanghai"
+          },
+          "data_kind": {
+            "type": "string",
+            "title": "Data Kind",
+            "default": "forecast"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "data_age_hours": {
+            "type": "number",
+            "title": "Data Age Hours"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/HealthRisk"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "update_time",
+          "data_age_hours",
+          "is_stale",
+          "rows"
+        ],
+        "title": "Forecast[HealthRisk]"
+      },
+      "Forecast_Hourly_": {
+        "properties": {
+          "unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "timezone": {
+            "type": "string",
+            "title": "Timezone",
+            "default": "Asia/Shanghai"
+          },
+          "data_kind": {
+            "type": "string",
+            "title": "Data Kind",
+            "default": "forecast"
+          },
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "data_age_hours": {
+            "type": "number",
+            "title": "Data Age Hours"
+          },
+          "is_stale": {
+            "type": "boolean",
+            "title": "Is Stale"
+          },
+          "rows": {
+            "items": {
+              "$ref": "#/components/schemas/Hourly"
+            },
+            "type": "array",
+            "title": "Rows"
+          },
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "update_time",
+          "data_age_hours",
+          "is_stale",
+          "rows"
+        ],
+        "title": "Forecast[Hourly]"
+      },
+      "HIDaily": {
+        "properties": {
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "forecast_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Forecast Date"
+          },
+          "hour_count": {
+            "type": "integer",
+            "maximum": 24.0,
+            "minimum": 1.0,
+            "title": "Hour Count"
+          },
+          "is_complete_day": {
+            "type": "boolean",
+            "title": "Is Complete Day"
+          },
+          "hi_max_c": {
+            "type": "number",
+            "title": "Hi Max C"
+          },
+          "hi_max_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Hi Max Time"
+          },
+          "hi_class": {
+            "type": "string",
+            "title": "Hi Class"
+          },
+          "effect_on_body": {
+            "type": "string",
+            "title": "Effect On Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "update_time",
+          "source",
+          "model",
+          "forecast_date",
+          "hour_count",
+          "is_complete_day",
+          "hi_max_c",
+          "hi_max_time",
+          "hi_class",
+          "effect_on_body"
+        ],
+        "title": "HIDaily"
+      },
+      "HIHourly": {
+        "properties": {
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "forecast_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Forecast Time"
+          },
+          "temperature_c": {
+            "type": "number",
+            "title": "Temperature C"
+          },
+          "relative_humidity_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Relative Humidity Pct"
+          },
+          "hi_c": {
+            "type": "number",
+            "title": "Hi C"
+          },
+          "hi_class": {
+            "type": "string",
+            "title": "Hi Class"
+          },
+          "effect_on_body": {
+            "type": "string",
+            "title": "Effect On Body"
+          }
+        },
+        "type": "object",
+        "required": [
+          "update_time",
+          "source",
+          "model",
+          "forecast_time",
+          "temperature_c",
+          "relative_humidity_pct",
+          "hi_c",
+          "hi_class",
+          "effect_on_body"
+        ],
+        "title": "HIHourly"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthRisk": {
+        "properties": {
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "forecast_date": {
+            "type": "string",
+            "format": "date",
+            "title": "Forecast Date"
+          },
+          "hour_count": {
+            "type": "integer",
+            "maximum": 24.0,
+            "minimum": 1.0,
+            "title": "Hour Count"
+          },
+          "is_complete_day": {
+            "type": "boolean",
+            "title": "Is Complete Day"
+          },
+          "tmean_c": {
+            "type": "number",
+            "title": "Tmean C"
+          },
+          "tmax_c": {
+            "type": "number",
+            "title": "Tmax C"
+          },
+          "rhmean_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Rhmean Pct"
+          },
+          "vmean_ms": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Vmean Ms"
+          },
+          "vapor_pressure_hpa": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vapor Pressure Hpa"
+          },
+          "at_c": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "At C"
+          },
+          "risk_0_64": {
+            "type": "string",
+            "title": "Risk 0 64"
+          },
+          "risk_65_plus": {
+            "type": "string",
+            "title": "Risk 65 Plus"
+          }
+        },
+        "type": "object",
+        "required": [
+          "update_time",
+          "source",
+          "model",
+          "forecast_date",
+          "hour_count",
+          "is_complete_day",
+          "tmean_c",
+          "tmax_c",
+          "rhmean_pct",
+          "vmean_ms",
+          "vapor_pressure_hpa",
+          "at_c",
+          "risk_0_64",
+          "risk_65_plus"
+        ],
+        "title": "HealthRisk"
+      },
+      "Hourly": {
+        "properties": {
+          "update_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Update Time"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "forecast_time": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Forecast Time"
+          },
+          "temperature_c": {
+            "type": "number",
+            "title": "Temperature C"
+          },
+          "relative_humidity_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Relative Humidity Pct"
+          },
+          "wind_speed_ms": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Wind Speed Ms"
+          },
+          "point_count": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Point Count"
+          },
+          "weight_sum": {
+            "type": "number",
+            "maximum": 1.000001,
+            "minimum": 0.999999,
+            "title": "Weight Sum"
+          }
+        },
+        "type": "object",
+        "required": [
+          "update_time",
+          "source",
+          "model",
+          "forecast_time",
+          "temperature_c",
+          "relative_humidity_pct",
+          "wind_speed_ms",
+          "point_count",
+          "weight_sum"
+        ],
+        "title": "Hourly"
+      },
+      "SnapshotStatus": {
+        "properties": {
+          "snapshot_revision": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot Revision"
+          },
+          "unit_count": {
+            "type": "integer",
+            "title": "Unit Count"
+          },
+          "file_count": {
+            "type": "integer",
+            "title": "File Count"
+          },
+          "cities": {
+            "items": {
+              "$ref": "#/components/schemas/CityStatus"
+            },
+            "type": "array",
+            "title": "Cities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "snapshot_revision",
+          "unit_count",
+          "file_count",
+          "cities"
+        ],
+        "title": "SnapshotStatus"
+      },
+      "Unit": {
+        "properties": {
+          "unit_id": {
+            "type": "string",
+            "pattern": "^[a-z]+_(core|urban|[0-9]{6})$",
+            "title": "Unit Id"
+          },
+          "city": {
+            "type": "string",
+            "title": "City"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "district_codes": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "District Codes"
+          },
+          "point_count": {
+            "type": "integer",
+            "exclusiveMinimum": 0.0,
+            "title": "Point Count"
+          },
+          "indicators": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Indicators"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit_id",
+          "city",
+          "name",
+          "district_codes",
+          "point_count",
+          "indicators"
+        ],
+        "title": "Unit"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

@@ -26,9 +26,11 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-      - run: pip install -r requirements.txt
+      - run: pip install -r requirements-api.txt
       - run: python scripts/update_all.py
       - run: python scripts/update_units.py
+      - name: Validate complete API data snapshot before publishing
+        run: python -m scripts.validate_api_snapshot
       - name: Save latest forecast
         run: |
           git config user.name "github-actions[bot]"
