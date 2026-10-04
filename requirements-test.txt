@@ -1,0 +1,3 @@
+-r requirements-api.txt
+-r requirements-spatial.txt
+httpx>=0.27,<1

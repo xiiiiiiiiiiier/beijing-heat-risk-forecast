@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: beijing-heat-risk-api
+    runtime: python
+    branch: main
+    plan: free
+    region: singapore
+    autoDeployTrigger: commit
+    buildCommand: pip install -r requirements-api.txt
+    startCommand: python -m uvicorn api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.10
+      - key: VALIDATE_SNAPSHOT_ON_START
+        value: '1'
+      - key: CORS_ORIGINS
+        value: https://xiiiiiiiiiiier.github.io

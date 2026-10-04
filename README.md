@@ -47,3 +47,20 @@ python scripts/update_units.py --city tianjin
 ```
 
 每轮原始预报保存在 `data/raw/forecast_runs/`，不提交到 Git。六市空间权重和边界输入的构建流程见 [`scripts/build_spatial.py`](scripts/build_spatial.py) 及 [`requirements-spatial.txt`](requirements-spatial.txt)。当前行政区边界使用第三方数据，不是法定界线；边界版本、研究范围和适用性应在正式科研发布前核定。
+
+## 2026-10-04 第二链 FastAPI 进度
+
+新增只读 FastAPI 服务，直接读取第一链 CSV：六市及单元列表、小时/日气象、39 个非 urban 单元的 AT 两年龄组风险、6 个 urban 单元的小时/日 HI。原有科研脚本和静态页面继续保留。服务标明数据更新时间、北京时间及超过 24 小时的陈旧状态。
+
+```powershell
+python -m pip install -r requirements-api.txt
+python -m uvicorn api:app --host 127.0.0.1 --port 8000
+```
+
+打开 http://127.0.0.1:8000/docs 试用接口。完整接口、数据合同、安装与验证方法见 [第二链说明](docs/fastapi_stage2.md)。本版为本地服务，尚未部署公网；独立服务器的数据同步仍需配置，GitHub Pages 无法运行 Python API。
+
+开发检查使用 `python -m pip install -r requirements-test.txt` 后执行 `python -m unittest discover -s tests -v`。新增独立测试工作流在代码变更时检查科研链与 API；现有定时预报工作流保留。
+
+### 接口合同和云端更新准备
+
+[v1 接口合同](docs/api_contract_v1.md) 和 [Render 部署说明](docs/render_deployment.md) 已补齐。根目录 render.yaml 定义试运行服务，第一链提交 CSV 前及云端启动前都执行整批检查。Render 连接 GitHub 后，On Commit 自动部署使代码和 CSV 以同一提交进入服务；/api/v1/status 可检查部署版本和六市数据时间。实际云服务仍须在 Render 账号中创建并验收，配置文件存在不代表已上线。

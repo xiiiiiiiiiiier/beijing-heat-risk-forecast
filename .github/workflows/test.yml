@@ -1,0 +1,21 @@
+name: Test scientific pipeline and API
+on:
+  push:
+    paths: ['api.py', 'scripts/**', 'tests/**', 'requirements*.txt', 'render.yaml', '.github/workflows/**']
+  pull_request:
+    paths: ['api.py', 'scripts/**', 'tests/**', 'requirements*.txt', 'render.yaml', '.github/workflows/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - run: python -m pip install -r requirements-test.txt
+      - run: python -m unittest discover -s tests -v
+      - run: python -m scripts.validate_api_snapshot
