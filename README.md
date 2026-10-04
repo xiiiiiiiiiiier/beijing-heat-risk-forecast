@@ -1,45 +1,49 @@
-# 北京中心城区高温健康风险预报
+# 京津冀六市高温预报与健康风险研究
 
-本项目对北京东城、西城、朝阳、海淀、丰台、石景山六区联合区域计算未来 7 天逐小时气象代表值、每日体感温度（AT）和两个年龄组的热效应风险分级。数据来自 Open-Meteo Forecast API 的 ECMWF IFS 预报；30 个格点的面积权重保存在 `data/static/forecast_points.csv`。Open-Meteo 将不同预报时效统一为逐小时序列。
+本项目持续生成北京、天津、石家庄、唐山、邯郸、保定六市的未来气象预报及相关热风险研究结果。全部结果按 **45 个研究单元**分别保存为 CSV，自动任务约每六小时更新一次。数据来自 Open-Meteo Forecast API 的 ECMWF IFS 预报，是模式预报和研究计算结果，不是实况观测，也不代表个人实际暴露。
 
-## 运行
+## 成果速览
 
-在项目根目录安装依赖并运行：
+| 成果 | 数量 | 文件位置 | 内容 |
+| --- | ---: | --- | --- |
+| 逐小时气象 | 45 份 | [`data/current/units/`](data/current/units/) | 每单元未来 168 小时的气温、相对湿度、风速及格点和权重信息 |
+| 逐日气象 | 45 份 | [`data/current/units/`](data/current/units/) | 每单元 7 天的平均气温、最高气温、平均湿度、平均风速和日完整性 |
+| 每日 AT 与年龄组风险 | 39 份 | [`data/processed/units/`](data/processed/units/) | 日尺度体感温度（AT）、0–64 岁及 ≥65 岁热效应风险分级 |
+| 全市联合区域 HI | 12 份 | [`data/processed/units/`](data/processed/units/) | 六市各一份逐小时热指数（HI）和一份逐日最高 HI、等级与可能影响 |
+| 北京主城区兼容结果 | 3 份 | [`data/current/`](data/current/)、[`data/processed/`](data/processed/) | 原北京六城区联合预报的小时、日值及 AT 风险文件 |
+
+以上是 **144 份 CSV 文件**。城市及研究单元文件名、区域范围对照见[六市数据文件索引](data/current/units/README.md)；研究单元格点数、区划代码和基础信息见 [`data/static/units/manifest.json`](data/static/units/manifest.json)。北京、天津、石家庄、唐山、邯郸、保定各有一个 `urban`（全市市辖区联合区域）和一个 `core`（主城区联合区域）；其余研究单元以六位行政区代码命名。单元代表值按区域权重计算，不同范围不可简单相加。
+
+**查看方式：**[在线网页](https://xiiiiiiiiiiier.github.io/beijing-heat-risk-forecast/)目前重点展示北京主城区的交互图表；其余城市和研究单元的全部结果已纳入仓库与 Pages 发布文件，可从上表目录或仓库文件索引查看、下载。网页显示范围不影响自动更新和 CSV 成果的覆盖范围。
+
+## 指标说明
+
+- **气象：** Open-Meteo 提供 ECMWF IFS 的逐小时 2 米气温、2 米相对湿度和 10 米风速。逐日数据按北京时间（UTC+8）汇总，并记录小时数及是否为完整自然日。
+- **AT 与健康风险：** 对 39 个非 `urban` 单元计算日尺度 Apparent Temperature（AT）和两个年龄组热效应风险。风险等级按项目所引用的文献口径输出；“未进入热效应风险分级”仅表示低于所用分级起点，不表示“无风险”。各研究单元结果在 `*_health_risk.csv` 文件中。
+- **HI：** 仅对每市 `urban` 全部市辖区联合区域计算 NOAA Heat Index：逐小时结果及当日最高值、发生时间、分类和可能身体影响。HI 与 AT 风险是不同指标；不完整日不作正式分级。HI 基于阴凉环境下的气温和湿度，未纳入日晒、个人体质或活动量。
+- **时间与来源：** CSV 中 `update_time` 是本轮更新时间，`forecast_time` 和 `forecast_date` 分别是预报时刻和北京时间预报日期。`hour_count`、`is_complete_day` 用来检查预报日是否完整；边缘时段可能是不完整日。方法、数据来源和适用限制见[网站与研究流程说明](网站介绍.md)及[阶段报告](docs/six_city_forecast_pipeline_stage1_report.md)。
+
+## 自动更新与本地运行
+
+GitHub Actions 约每六小时运行北京原有预报流程及六市流程；全部步骤成功后提交最新 CSV 并部署 GitHub Pages。失败的更新不会发布为新一轮完整成果。定时任务实际开始时间可能有延迟，请查看 CSV 的 `update_time` 或 Actions 运行记录。
+
+更新北京原有主城区结果：
 
 ```powershell
 python -m pip install -r requirements.txt
 python scripts/update_all.py
 ```
 
-程序依次获取预报、计算六区面积加权均值、按北京时间自然日聚合、计算 AT 与 0–64 岁及 ≥65 岁风险。每次原始预报另存于 `data/raw/forecast_runs/`；该目录的 CSV 不进入 Git。最新结果为：
+更新全部六市研究单元：
 
-- `data/current/beijing_center_forecast_hourly.csv`：未来 168 小时气象数据。
-- `data/current/beijing_center_forecast_daily.csv`：北京时间每日气象数据，含 `hour_count` 和 `is_complete_day`。
-- `data/processed/beijing_center_health_risk.csv`：每日 AT 与两年龄组风险。
+```powershell
+python scripts/update_units.py
+```
 
-仓库根目录的 `index.html` 是静态展示页，直接读取上述三个 CSV。`.github/workflows/update-forecast.yml` 每 6 小时运行一次计算链，成功后将新 CSV 提交到仓库。GitHub 定时任务可能晚于设定时间启动，请以网页上的数据更新时间为准。公开网址由 GitHub Pages 提供。
-
-低于文献热效应低风险起点时，结果标为“未进入热效应风险分级”，并不表示“无风险”。历史 ERA5-Land 试运行与本仓库的未来预报是不同数据链。
-
-## 六市研究单元
-
-北京原有六区联合预报链保留，作为回归基准。每个城市另有一份**全部市辖区合并区域**（`<city>_urban`），用于 HI；原有其余市辖区的单区气象与 AT 结果继续保留。[文件名与城市、区名完整对照表](data/current/units/README.md)列明具体范围；格点数见 `data/static/units/manifest.json`。当前网页仍只展示北京原有结果；新增 CSV 供后续网站接入。
-
-独立的 NOAA Heat Index 模块**每市只计算一份全部市辖区联合结果**：读取同轮逐小时气温与相对湿度，按 [NOAA 方法](https://www.weather.gov/tbw/heatindex)计算逐小时 HI，再按北京时间取每日最高 HI；`data/processed/units/<city>_urban_heat_index_hourly.csv` 和 `_daily.csv` 保存数值、[ECMWF 分级及可能的身体影响](https://confluence.ecmwf.int/plugins/viewsource/viewpagesrc.action?pageId=473837635)。不完整日标注但不正式分级。该模块与原有 AT 健康风险并列，不互相替代；HI 针对阴凉环境下的温湿度，不包含日晒、个人体质或实际活动量，也不是实况观测。
-
-`scripts/update_units.py` 按城市合并相同的 O1280 格点请求，逐轮核对 Open-Meteo 返回坐标（距理论中心不超过 2 米且互不重复），然后按各单元自己的权重计算逐小时值、北京时间日值和两年龄组风险。固定参数是 `models=ecmwf_ifs`、`cell_selection=nearest`、`elevation=nan`。每城市的原始取数保存在 `data/raw/forecast_runs/<city>/`，不提交 Git；最新结果在 `data/current/units/` 和 `data/processed/units/`。单独更新一个城市：
+只更新一座城市（例如天津）：
 
 ```powershell
 python scripts/update_units.py --city tianjin
 ```
 
-不带 `--city` 时更新全部六市。GitHub Actions 每六小时执行北京原流程和六市流程，全部成功后才提交 CSV 并部署。某次失败时不会把本轮不完整输出发布到网站。
-
-空间输入来自与北京现有边界相同的第三方 [pamaforce/geojson WGS84 数据](https://github.com/pamaforce/geojson)，原始市级文件保存在 `data/boundary_sources/`。源文件使用 GB 编码；边界不是官方法定界线。`scripts/build_spatial.py` 按 O1280 实际格点中心、等面积投影下的最近中心 Voronoi 单元与研究区相交面积生成各单元权重；北京主城区继续直接使用 `data/static/forecast_points.csv` 权重。仅在边界、模型或格点选择规则改变并完成复核后重新生成：
-
-```powershell
-python -m pip install -r requirements-spatial.txt
-python scripts/build_spatial.py
-```
-
-新增单元采用《草稿.docx》的市辖区清单；县和县级市没有纳入。第三方边界与官方法定界线可能不同，正式科研发布前应核定范围和边界版本。ERA5-Land 的格点或权重不能用于本预报链。
+每轮原始预报保存在 `data/raw/forecast_runs/`，不提交到 Git。六市空间权重和边界输入的构建流程见 [`scripts/build_spatial.py`](scripts/build_spatial.py) 及 [`requirements-spatial.txt`](requirements-spatial.txt)。当前行政区边界使用第三方数据，不是法定界线；边界版本、研究范围和适用性应在正式科研发布前核定。
