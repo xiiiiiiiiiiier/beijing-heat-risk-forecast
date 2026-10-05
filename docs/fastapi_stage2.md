@@ -57,3 +57,11 @@ python -m unittest discover -s tests -v
 接口测试逐一比对 45 单元的 141 个结果文件，另覆盖未知单元、AT/HI 范围、缺失/损坏文件、陈旧数据、不完整日和 OpenAPI。第一链回归测试同时运行。测试不会调用外部天气 API 更新预报。
 
 本次本地验证：Python 3.12 环境共 51 项测试通过，其中新增 API 测试 5 项（含全部单元和文件的子检查）。另启动 Uvicorn，通过实际 HTTP 确认 /health、/docs 和天津主城区风险接口正常。未执行线上部署；GitHub 的新增检查工作流需推送后才会运行。
+
+## 2026-10-05 公网部署与后续核验
+
+上文“尚未发布到公网”和“未执行线上部署”是第一版编写时的历史状态，现已变化。FastAPI 已在 Render 免费 Web Service `beijing-heat-risk-api` 上线，公开地址为 https://beijing-heat-risk-api.onrender.com，接口文档为 `/docs`，整批数据状态为 `/api/v1/status`。服务在 Render 页面手动创建并连接 GitHub `main`，配置了 On Commit 自动部署、Python 3.12.10、新加坡地区、`/health` 健康检查、`VALIDATE_SNAPSHOT_ON_START=1` 和现有 GitHub Pages 域名的 CORS 白名单。根目录 `render.yaml` 是配置记录，并未作为 Blueprint 创建此服务；后续若改动部署设置，需核对 Render 页面中的实际配置。
+
+定时更新运行 [37303138079](https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/actions/runs/37303138079) 成功后，数据提交 `1b89056381f22813e997909ec4d611d9c920ff8e` 已部署到 Render。本次核对时，公网 `/api/v1/status` 返回相同的 `snapshot_revision`、45 个单元、141 份结果文件和六市更新时间，均为 `is_stale=false`；后续任何 `main` 提交（包括文档提交）都会触发新部署并改变快照号，数据时间未必改变。公网天津主城区 `/health-risk` 与天津 `urban` 的 `/heat-index/daily` 各返回 7 行结果。`/health`、`/docs`、`/api/v1/cities` 返回 200，不支持的 AT/HI 组合返回 422，未知单元返回 404。允许的 GitHub Pages origin 收到跨域响应头；一次 PowerShell 请求曾触发 Cloudflare 校验页，而普通 HTTP 请求随后正常返回 JSON，网页接入时仍需实际浏览器核对。
+
+本次以仓库已有 `.venv` 执行完整测试，55 项通过；最新数据快照校验为 45 个单元、141 份文件。现有静态网页尚未改为调用这些接口，下一步按 [前端接口合同](api_contract_v1.md) 接入六市与研究单元选择、AT/HI 和数据时间提示。Render 免费实例闲置后会休眠，首次请求可能延迟 50 秒以上。

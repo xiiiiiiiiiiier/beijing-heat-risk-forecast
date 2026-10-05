@@ -64,3 +64,9 @@ python -m uvicorn api:app --host 127.0.0.1 --port 8000
 ### 接口合同和云端更新准备
 
 [v1 接口合同](docs/api_contract_v1.md) 和 [Render 部署说明](docs/render_deployment.md) 已补齐。根目录 render.yaml 定义试运行服务，第一链提交 CSV 前及云端启动前都执行整批检查。Render 连接 GitHub 后，On Commit 自动部署使代码和 CSV 以同一提交进入服务；/api/v1/status 可检查部署版本和六市数据时间。实际云服务仍须在 Render 账号中创建并验收，配置文件存在不代表已上线。
+
+### 2026-10-05 公网部署与自动更新验收
+
+上述“仅本地运行、尚未上线”记录的是 2026-10-04 的阶段状态。现在 FastAPI 已作为 Render 免费 Web Service 上线：[接口文档](https://beijing-heat-risk-api.onrender.com/docs)、[数据状态](https://beijing-heat-risk-api.onrender.com/api/v1/status)。服务连接本仓库 `main`，使用 On Commit 自动部署、`/health` 健康检查和启动时整批数据校验。服务是在 Render 页面手动创建的；`render.yaml` 保留部署配置参考，日后修改该文件不会自动修改这项已创建服务的设置。
+
+截至本次核对，GitHub Actions 定时更新运行 [37303138079](https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/actions/runs/37303138079) 成功；仓库最新数据提交与当时线上的 `snapshot_revision` 均为 `1b89056381f22813e997909ec4d611d9c920ff8e`。后续任何 `main` 提交（包括文档提交）都会触发新部署并改变快照号，数据时间未必改变。线上状态返回六市、45 个研究单元、141 份 API 结果文件，六市数据未标记为过期；天津主城区 AT 风险和天津 urban 日 HI 接口均返回预报。项目环境下完整测试为 55/55 通过。免费实例闲置后会休眠，首次请求可能较慢。现有静态网页仍主要展示北京主城区，六市页面尚未接入该 API。
