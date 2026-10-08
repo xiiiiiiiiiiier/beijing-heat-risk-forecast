@@ -268,6 +268,18 @@ def create_app(data_dir: Path = ROOT / "data") -> FastAPI:
             raise HTTPException(404, "未知城市")
         return [u for u in units().values() if u.city == city]
 
+    @app.get(
+        "/api/v1/cities/{city}/risk",
+        status_code=501,
+        summary="城市综合健康风险（预留，尚未实现）",
+        description="城市综合健康风险的科研方法和结果尚未完成。现有 AT 年龄组风险与全市市辖区合并区域 HI 不是城市综合风险。",
+        responses={404: {"description": "未知城市"}, 501: {"description": "城市综合健康风险尚未实现"}},
+    )
+    def city_risk(city: str):
+        if city not in CITY_NAMES:
+            raise HTTPException(404, "未知城市")
+        raise HTTPException(501, "城市综合健康风险尚未建立科研计算结果；目前仅提供单元 AT 年龄组风险和全市市辖区合并区域 HI")
+
     @app.get("/api/v1/units/{unit_id}/hourly", response_model=Forecast[Hourly])
     def hourly(unit_id: str):
         return read(unit_id, "current", "hourly", Hourly)

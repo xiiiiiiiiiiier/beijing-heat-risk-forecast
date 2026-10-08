@@ -65,3 +65,7 @@ python -m unittest discover -s tests -v
 定时更新运行 [37303138079](https://github.com/xiiiiiiiiiiier/beijing-heat-risk-forecast/actions/runs/37303138079) 成功后，数据提交 `1b89056381f22813e997909ec4d611d9c920ff8e` 已部署到 Render。本次核对时，公网 `/api/v1/status` 返回相同的 `snapshot_revision`、45 个单元、141 份结果文件和六市更新时间，均为 `is_stale=false`；后续任何 `main` 提交（包括文档提交）都会触发新部署并改变快照号，数据时间未必改变。公网天津主城区 `/health-risk` 与天津 `urban` 的 `/heat-index/daily` 各返回 7 行结果。`/health`、`/docs`、`/api/v1/cities` 返回 200，不支持的 AT/HI 组合返回 422，未知单元返回 404。允许的 GitHub Pages origin 收到跨域响应头；一次 PowerShell 请求曾触发 Cloudflare 校验页，而普通 HTTP 请求随后正常返回 JSON，网页接入时仍需实际浏览器核对。
 
 本次以仓库已有 `.venv` 执行完整测试，55 项通过；最新数据快照校验为 45 个单元、141 份文件。现有静态网页尚未改为调用这些接口，下一步按 [前端接口合同](api_contract_v1.md) 接入六市与研究单元选择、AT/HI 和数据时间提示。Render 免费实例闲置后会休眠，首次请求可能延迟 50 秒以上。
+
+## 2026-10-08 城市综合健康风险接口预留
+
+`GET /api/v1/cities/{city}/risk` 仅占用将来的接口路径，已知城市返回 501“尚未实现”，未知城市返回 404。当前没有城市综合健康风险的科研结果、数值或等级；现有 AT 年龄组风险与每市全部市辖区合并区域的 HI 都不能充当综合风险。该预留接口不改变六市自动更新、141 份结果文件或现有查询接口。

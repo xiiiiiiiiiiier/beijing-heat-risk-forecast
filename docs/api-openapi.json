@@ -107,6 +107,47 @@
         }
       }
     },
+    "/api/v1/cities/{city}/risk": {
+      "get": {
+        "summary": "城市综合健康风险（预留，尚未实现）",
+        "description": "城市综合健康风险的科研方法和结果尚未完成。现有 AT 年龄组风险与全市市辖区合并区域 HI 不是城市综合风险。",
+        "operationId": "city_risk_api_v1_cities__city__risk_get",
+        "parameters": [
+          {
+            "name": "city",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "City"
+            }
+          }
+        ],
+        "responses": {
+          "501": {
+            "description": "城市综合健康风险尚未实现",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "未知城市"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/units/{unit_id}/hourly": {
       "get": {
         "summary": "Hourly",
