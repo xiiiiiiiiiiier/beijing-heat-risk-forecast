@@ -40,7 +40,7 @@ class UnitProcessingTest(unittest.TestCase):
         self.assertLess(coordinate_distance_m(39, 116, 39.000001, 116), 2)
         self.assertGreater(coordinate_distance_m(39, 116, 39.01, 116), 1000)
 
-    def test_retries_429_before_accepting_forecast(self):
+    def test_retries_temporary_http_errors_before_accepting_forecast(self):
         class Reply:
             def __init__(self, status):
                 self.status_code = status
@@ -48,7 +48,7 @@ class UnitProcessingTest(unittest.TestCase):
 
             def raise_for_status(self):
                 if self.status_code != 200:
-                    raise RuntimeError("429")
+                    raise requests.exceptions.HTTPError(str(self.status_code))
 
             def json(self):
                 times = pd.date_range("2026-07-01", periods=168, freq="h")
@@ -59,12 +59,30 @@ class UnitProcessingTest(unittest.TestCase):
                     "wind_speed_10m": [2] * 168,
                 }}
 
-        with patch("update_units.requests.get", side_effect=[Reply(429), Reply(200)]) as get, \
-             patch("update_units.time.sleep") as sleep:
-            result = fetch_city({"39.0000000000,116.0000000000": (39, 116)}, "run")
-        self.assertEqual(len(result), 168)
-        self.assertEqual(get.call_count, 2)
-        sleep.assert_called()
+        for status in (408, 429, 500, 502, 503, 504):
+            with self.subTest(status=status), \
+                 patch("update_units._requested_points", 0), \
+                 patch("update_units.requests.get", side_effect=[Reply(status), Reply(200)]) as get, \
+                 patch("update_units.time.sleep") as sleep:
+                result = fetch_city({"39.0000000000,116.0000000000": (39, 116)}, "run")
+                self.assertEqual(len(result), 168)
+                self.assertEqual(get.call_count, 2)
+                sleep.assert_called_once_with(61 if status == 429 else 15)
+
+    def test_persistent_http_errors_fail_without_infinite_retry(self):
+        from unittest.mock import Mock
+        for status, attempts in ((503, 3), (400, 1), (401, 1), (403, 1), (404, 1)):
+            response = Mock(status_code=status)
+            response.raise_for_status.side_effect = requests.exceptions.HTTPError(str(status))
+            with self.subTest(status=status), \
+                 patch("update_units._requested_points", 0), \
+                 patch("update_units.requests.get", return_value=response) as get, \
+                 patch("update_units.time.sleep") as sleep:
+                with self.assertRaises(requests.exceptions.HTTPError):
+                    fetch_city({"39.0000000000,116.0000000000": (39, 116)}, "run")
+                self.assertEqual(get.call_count, attempts)
+                self.assertEqual(sleep.call_count, attempts - 1)
+                response.json.assert_not_called()
 
     def test_retries_network_timeout(self):
         with patch("update_units.requests.get", side_effect=requests.exceptions.ReadTimeout) as get, \

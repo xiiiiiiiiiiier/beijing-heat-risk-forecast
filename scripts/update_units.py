@@ -81,15 +81,19 @@ def fetch_city(coordinates, update_time):
         for attempt in range(3):
             try:
                 response = requests.get(API_URL, params=params, timeout=120)
-            except requests.exceptions.RequestException:
+            except requests.exceptions.RequestException as error:
                 if attempt == 2:
                     raise
+                print(f"Open-Meteo {type(error).__name__}; retry {attempt + 2}/3", flush=True)
                 time.sleep(5 * (attempt + 1))
                 continue
-            if response.status_code != 429 or attempt == 2:
+            if response.status_code not in (408, 429, 500, 502, 503, 504) or attempt == 2:
                 break
-            time.sleep(61)
-            _window_start, _requested_points = time.monotonic(), 0
+            delay = 61 if response.status_code == 429 else 15 * (attempt + 1)
+            print(f"Open-Meteo HTTP {response.status_code}; retry {attempt + 2}/3 in {delay}s", flush=True)
+            time.sleep(delay)
+            if response.status_code == 429:
+                _window_start, _requested_points = time.monotonic(), 0
         response.raise_for_status()
         _requested_points += len(batch)
         data = response.json()
