@@ -10,6 +10,7 @@ from pyproj import CRS, Transformer
 from scipy.spatial import Voronoi
 from shapely.geometry import Polygon, mapping, shape
 from shapely.ops import transform, unary_union
+from shapely.validation import explain_validity
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -42,6 +43,10 @@ def build_units(source_dir):
         if missing:
             raise ValueError(f"{city}: missing core districts {sorted(missing)}")
         urban_codes = (*core_codes, *OTHER[city])
+        for code in urban_codes:
+            geometry = shape(districts[code]["geometry"])
+            if geometry.is_empty or not geometry.is_valid:
+                raise ValueError(f"{city} {code}: invalid geometry: {explain_validity(geometry)}")
         units[f"{city}_urban"] = {"city": city, "name": "全部市辖区联合区域", "codes": urban_codes,
                                    "geometry": unary_union([shape(districts[c]["geometry"]) for c in urban_codes])}
         core_geometry = unary_union([shape(districts[c]["geometry"]) for c in core_codes])
@@ -55,6 +60,8 @@ def build_units(source_dir):
 
 
 def calculate_points(geometry):
+    if geometry.is_empty or not geometry.is_valid:
+        raise ValueError(f"invalid geometry: {explain_validity(geometry)}")
     lon_min, lat_min, lon_max, lat_max = geometry.bounds
     lon0, lat0 = geometry.centroid.x, geometry.centroid.y
     crs = CRS.from_proj4(f"+proj=laea +lat_0={lat0} +lon_0={lon0} +datum=WGS84 +units=m")
