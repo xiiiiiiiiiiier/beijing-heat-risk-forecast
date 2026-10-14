@@ -1,0 +1,12 @@
+{
+  "source": "Open-Meteo ecmwf_ifs fetched by unchanged update_units.fetch_city",
+  "update_time": "2026-10-14T19:25:57+08:00",
+  "raw_sha256": "e32ca87b1447fdb4e10242805e19f5ff109f70336a21bc220d6b428aa348ecb3",
+  "gzip_sha256": "5c8cc29d8deae84d454f551eb797d564a0cdd738c3b93e1f8f70bbf9d0e512fc",
+  "grid_points": 246,
+  "hour_count": 168,
+  "raw_point_hours": 41328,
+  "base_commit": "196f7cee31b2a5a787f6f290823120eb8c80b9d7",
+  "geometry_fix_commit": "af1eb59",
+  "scope": "12 Beijing units plus three legacy core mirrors; five other cities unchanged"
+}

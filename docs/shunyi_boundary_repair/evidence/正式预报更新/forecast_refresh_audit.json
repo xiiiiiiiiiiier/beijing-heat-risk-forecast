@@ -1,0 +1,468 @@
+{
+  "before_ref": "196f7cee31b2a5a787f6f290823120eb8c80b9d7",
+  "update_time": "2026-10-14T19:25:57+08:00",
+  "input_sha256": "5c8cc29d8deae84d454f551eb797d564a0cdd738c3b93e1f8f70bbf9d0e512fc",
+  "input_grid_points": 246,
+  "input_hours": 168,
+  "beijing_units": 12,
+  "recomputed_files": 40,
+  "all_outputs_reproduce": true,
+  "old_and_new_weights_same_input": {
+    "beijing_urban": {
+      "hourly.temperature_c": 2.0250467969162855e-13,
+      "hourly.relative_humidity_pct": 1.4352963262354024e-12,
+      "hourly.wind_speed_ms": 8.881784197001252e-14,
+      "hourly.point_count": 0.0,
+      "hourly.weight_sum": 1.2434497875801753e-14,
+      "hourly.update_time_changed_rows": 0,
+      "hourly.forecast_time_changed_rows": 0,
+      "hourly.source_changed_rows": 0,
+      "hourly.model_changed_rows": 0,
+      "daily.tmean_c": 1.545430450278218e-13,
+      "daily.tmax_c": 1.9539925233402755e-13,
+      "daily.rhmean_pct": 1.2363443602225743e-12,
+      "daily.vmean_ms": 4.618527782440651e-14,
+      "daily.hour_count": 0.0,
+      "daily.update_time_changed_rows": 0,
+      "daily.forecast_date_changed_rows": 0,
+      "daily.is_complete_day_changed_rows": 0,
+      "daily.source_changed_rows": 0,
+      "daily.model_changed_rows": 0,
+      "result_0.temperature_c": 2.0250467969162855e-13,
+      "result_0.relative_humidity_pct": 1.4352963262354024e-12,
+      "result_0.hi_c": 2.1671553440683056e-13,
+      "result_0.update_time_changed_rows": 0,
+      "result_0.forecast_time_changed_rows": 0,
+      "result_0.source_changed_rows": 0,
+      "result_0.model_changed_rows": 0,
+      "result_0.hi_class_changed_rows": 0,
+      "result_0.effect_on_body_changed_rows": 0,
+      "result_1.hi_max_c": 2.1671553440683056e-13,
+      "result_1.hour_count": 0.0,
+      "result_1.update_time_changed_rows": 0,
+      "result_1.forecast_date_changed_rows": 0,
+      "result_1.hi_max_time_changed_rows": 0,
+      "result_1.hi_class_changed_rows": 0,
+      "result_1.effect_on_body_changed_rows": 0,
+      "result_1.is_complete_day_changed_rows": 0,
+      "result_1.source_changed_rows": 0,
+      "result_1.model_changed_rows": 0
+    },
+    "beijing_110113": {
+      "hourly.temperature_c": 1.7408297026122455e-13,
+      "hourly.relative_humidity_pct": 1.7053025658242404e-12,
+      "hourly.wind_speed_ms": 2.6778579353958776e-13,
+      "hourly.point_count": 0.0,
+      "hourly.weight_sum": 6.661338147750939e-16,
+      "hourly.update_time_changed_rows": 0,
+      "hourly.forecast_time_changed_rows": 0,
+      "hourly.source_changed_rows": 0,
+      "hourly.model_changed_rows": 0,
+      "daily.tmean_c": 4.263256414560601e-14,
+      "daily.tmax_c": 8.881784197001252e-14,
+      "daily.rhmean_pct": 6.252776074688882e-13,
+      "daily.vmean_ms": 9.769962616701378e-14,
+      "daily.hour_count": 0.0,
+      "daily.update_time_changed_rows": 0,
+      "daily.forecast_date_changed_rows": 0,
+      "daily.is_complete_day_changed_rows": 0,
+      "daily.source_changed_rows": 0,
+      "daily.model_changed_rows": 0,
+      "result_0.tmean_c": 4.263256414560601e-14,
+      "result_0.tmax_c": 8.881784197001252e-14,
+      "result_0.rhmean_pct": 6.252776074688882e-13,
+      "result_0.vmean_ms": 9.769962616701378e-14,
+      "result_0.hour_count": 0.0,
+      "result_0.vapor_pressure_hpa": 7.638334409421077e-14,
+      "result_0.at_c": 5.684341886080802e-14,
+      "result_0.update_time_changed_rows": 0,
+      "result_0.forecast_date_changed_rows": 0,
+      "result_0.is_complete_day_changed_rows": 0,
+      "result_0.source_changed_rows": 0,
+      "result_0.model_changed_rows": 0,
+      "result_0.risk_0_64_changed_rows": 0,
+      "result_0.risk_65_plus_changed_rows": 0
+    }
+  },
+  "changed_forecast_files": [
+    "data/current/beijing_center_forecast_daily.csv",
+    "data/current/beijing_center_forecast_hourly.csv",
+    "data/current/units/beijing_110109_daily.csv",
+    "data/current/units/beijing_110109_hourly.csv",
+    "data/current/units/beijing_110111_daily.csv",
+    "data/current/units/beijing_110111_hourly.csv",
+    "data/current/units/beijing_110112_daily.csv",
+    "data/current/units/beijing_110112_hourly.csv",
+    "data/current/units/beijing_110113_daily.csv",
+    "data/current/units/beijing_110113_hourly.csv",
+    "data/current/units/beijing_110114_daily.csv",
+    "data/current/units/beijing_110114_hourly.csv",
+    "data/current/units/beijing_110115_daily.csv",
+    "data/current/units/beijing_110115_hourly.csv",
+    "data/current/units/beijing_110116_daily.csv",
+    "data/current/units/beijing_110116_hourly.csv",
+    "data/current/units/beijing_110117_daily.csv",
+    "data/current/units/beijing_110117_hourly.csv",
+    "data/current/units/beijing_110118_daily.csv",
+    "data/current/units/beijing_110118_hourly.csv",
+    "data/current/units/beijing_110119_daily.csv",
+    "data/current/units/beijing_110119_hourly.csv",
+    "data/current/units/beijing_core_daily.csv",
+    "data/current/units/beijing_core_hourly.csv",
+    "data/current/units/beijing_urban_daily.csv",
+    "data/current/units/beijing_urban_hourly.csv",
+    "data/processed/beijing_center_health_risk.csv",
+    "data/processed/units/beijing_110109_health_risk.csv",
+    "data/processed/units/beijing_110111_health_risk.csv",
+    "data/processed/units/beijing_110112_health_risk.csv",
+    "data/processed/units/beijing_110113_health_risk.csv",
+    "data/processed/units/beijing_110114_health_risk.csv",
+    "data/processed/units/beijing_110115_health_risk.csv",
+    "data/processed/units/beijing_110116_health_risk.csv",
+    "data/processed/units/beijing_110117_health_risk.csv",
+    "data/processed/units/beijing_110118_health_risk.csv",
+    "data/processed/units/beijing_110119_health_risk.csv",
+    "data/processed/units/beijing_core_health_risk.csv",
+    "data/processed/units/beijing_urban_heat_index_daily.csv",
+    "data/processed/units/beijing_urban_heat_index_hourly.csv"
+  ],
+  "checks": {
+    "data/current/units/beijing_urban_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_urban_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_urban_heat_index_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "hi_c": 0.0
+    },
+    "data/processed/units/beijing_urban_heat_index_daily.csv": {
+      "hi_max_c": 0.0,
+      "hour_count": 0.0
+    },
+    "data/current/units/beijing_core_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_core_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_core_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0,
+      "hour_count": 0.0
+    },
+    "data/current/units/beijing_110109_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110109_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110109_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110111_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110111_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110111_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110112_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110112_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110112_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110113_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110113_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110113_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110114_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110114_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110114_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110115_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110115_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110115_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110116_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110116_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110116_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110117_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110117_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110117_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110118_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110118_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110118_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/units/beijing_110119_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/units/beijing_110119_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/units/beijing_110119_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0
+    },
+    "data/current/beijing_center_forecast_hourly.csv": {
+      "temperature_c": 0.0,
+      "relative_humidity_pct": 0.0,
+      "wind_speed_ms": 0.0,
+      "point_count": 0.0,
+      "weight_sum": 0.0
+    },
+    "data/current/beijing_center_forecast_daily.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "hour_count": 0.0
+    },
+    "data/processed/beijing_center_health_risk.csv": {
+      "tmean_c": 0.0,
+      "tmax_c": 0.0,
+      "rhmean_pct": 0.0,
+      "vmean_ms": 0.0,
+      "vapor_pressure_hpa": 0.0,
+      "at_c": 0.0,
+      "hour_count": 0.0
+    }
+  },
+  "whole_repository_snapshot": {
+    "snapshot_revision": null,
+    "unit_count": 45,
+    "file_count": 141,
+    "cities": [
+      {
+        "city": "beijing",
+        "update_time": "2026-10-14 19:25:57+08:00",
+        "is_stale": false
+      },
+      {
+        "city": "tianjin",
+        "update_time": "2026-10-14 17:30:50+08:00",
+        "is_stale": false
+      },
+      {
+        "city": "shijiazhuang",
+        "update_time": "2026-10-14 17:32:59+08:00",
+        "is_stale": false
+      },
+      {
+        "city": "tangshan",
+        "update_time": "2026-10-14 17:33:01+08:00",
+        "is_stale": false
+      },
+      {
+        "city": "handan",
+        "update_time": "2026-10-14 17:35:08+08:00",
+        "is_stale": false
+      },
+      {
+        "city": "baoding",
+        "update_time": "2026-10-14 17:35:09+08:00",
+        "is_stale": false
+      }
+    ]
+  },
+  "interpretation": "Weight comparison holds fetched raw weather fixed. New-vs-old published runs cannot be attributed solely to geometry; previous raw run was not retained."
+}

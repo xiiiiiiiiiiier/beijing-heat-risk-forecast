@@ -1,0 +1,37 @@
+{
+  "snapshot_revision": null,
+  "unit_count": 45,
+  "file_count": 141,
+  "cities": [
+    {
+      "city": "beijing",
+      "update_time": "2026-10-14 19:25:57+08:00",
+      "is_stale": false
+    },
+    {
+      "city": "tianjin",
+      "update_time": "2026-10-14 17:30:50+08:00",
+      "is_stale": false
+    },
+    {
+      "city": "shijiazhuang",
+      "update_time": "2026-10-14 17:32:59+08:00",
+      "is_stale": false
+    },
+    {
+      "city": "tangshan",
+      "update_time": "2026-10-14 17:33:01+08:00",
+      "is_stale": false
+    },
+    {
+      "city": "handan",
+      "update_time": "2026-10-14 17:35:08+08:00",
+      "is_stale": false
+    },
+    {
+      "city": "baoding",
+      "update_time": "2026-10-14 17:35:09+08:00",
+      "is_stale": false
+    }
+  ]
+}

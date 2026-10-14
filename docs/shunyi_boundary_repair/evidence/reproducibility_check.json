@@ -1,0 +1,345 @@
+{
+  "method": "Second independent local clone of pinned HEAD; applied code/tests portion of patch; reran delivered repair and ERA5 scripts with preserved prior evidence. Separate clone accepted complete patch and matched every changed file.",
+  "all_repeat_files_identical": true,
+  "complete_patch_check_and_apply_passed": true,
+  "complete_patch_changed_files_match_after_line_ending_normalization": [
+    "data/boundary_sources/110000.json",
+    "data/static/units/beijing_110113.geojson",
+    "data/static/units/beijing_110113_points.csv",
+    "data/static/units/beijing_urban_points.csv",
+    "scripts/build_spatial.py",
+    "tests/fixtures/shunyi_original.geojson",
+    "tests/test_shunyi_geometry.py"
+  ],
+  "patch_checkout_line_ending_only_differences": [
+    "tests/test_shunyi_geometry.py"
+  ],
+  "compared_files": 65,
+  "files": [
+    {
+      "path": "after/data/boundary_sources/110000.json",
+      "sha256": "16e7a6dffdbc58dc7c4c9e963006f8bdaf106a3a20d63ee3bffce785e6b1c314",
+      "repeat_identical": true
+    },
+    {
+      "path": "after/data/static/units/beijing_110113.geojson",
+      "sha256": "8e4b7f484e326e80b4b7742bcdd8bedd29b14fc0a9a57fe46b177e2021295c19",
+      "repeat_identical": true
+    },
+    {
+      "path": "after/data/static/units/beijing_110113_points.csv",
+      "sha256": "f6982b87001743801844bb11870f48e9428ee10b0213f25be186b094fc31ab62",
+      "repeat_identical": true
+    },
+    {
+      "path": "after/data/static/units/beijing_urban.geojson",
+      "sha256": "ca640034bfcd49c747c6ea36d17c6527e8867ae1ae5e1c9e66599102dd68ca98",
+      "repeat_identical": true
+    },
+    {
+      "path": "after/data/static/units/beijing_urban_points.csv",
+      "sha256": "96058aa6e743f62d29149922e2d67ef0d3b85bf322b92e5aead8200293d9a49b",
+      "repeat_identical": true
+    },
+    {
+      "path": "after/data/static/units/manifest.json",
+      "sha256": "43d05842ee091d09b8c81de248e8c02a6a8140bee97eeb9ca55214cf54f5515c",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/buffer_zero.geojson",
+      "sha256": "ed8b2a1e558a0cac0bb17ab800e324c89dbc724fb09f2c7c1a69fc919663c9e3",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/component_union.geojson",
+      "sha256": "d12bf6eaf4b4f2647fdd464e081b913a5bd2fe6516f08301a0ac494803a5f232",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/make_valid_full.geojson",
+      "sha256": "314d2e982caa15abc55e7a772bf89016f8762506e38ff1c6490fee3e1bf67fe7",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/make_valid_linework_polygon.geojson",
+      "sha256": "5ed5e21d8b62a5afc6d1a182dfcfbd01b0f0a7d3c772733b976750b8f182ede2",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/make_valid_structure.geojson",
+      "sha256": "9ebcaa6e221498598a575b4fc639f768d401abb3549a199b200e0503c82c0e27",
+      "repeat_identical": true
+    },
+    {
+      "path": "candidates/shared_edges.geojson",
+      "sha256": "e59f99faf6bfb1964d5420860bfb4266df72eba4edb68df98421799a21777983",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/beijing_urban_after.csv",
+      "sha256": "b8158ccb4a13f2ada6851c80222df211a91246534f35de21fce4e430b7e34d63",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/beijing_urban_before.csv",
+      "sha256": "b8158ccb4a13f2ada6851c80222df211a91246534f35de21fce4e430b7e34d63",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/beijing_urban_prior_method_check.csv",
+      "sha256": "81cf3d1120f33aae0bbdf7167087cbbf3d4196c2ea7ee3922c81eb50e4ffa081",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/buffer_zero.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/component_union.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/make_valid_linework_polygon.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/make_valid_structure.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_100m_east.csv",
+      "sha256": "70856f206a3abcaebe9f377c0900facabb25967565678f438bfe22603fbe445e",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_100m_north.csv",
+      "sha256": "a8976751c15cc7a21f4d9ab600411d3314878a6df830700668ab4970dc6a4f55",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_100m_south.csv",
+      "sha256": "83f89ad624363256c6b1ceaa5af3bd57cfb48e2a46da4b3390b93a297cb9c28c",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_100m_west.csv",
+      "sha256": "806b8923623685901aca3c960585e44ac3f07468ff30aafa8b3a3a97d97a7b68",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_500m_east.csv",
+      "sha256": "97c8852d136fb87861126e7824dd8c82c17f1da0c1d9245a0fe8f0018557ffb2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_500m_north.csv",
+      "sha256": "30e89e9f85c50091415e343fb47687932c5efcbaa837a7d5c9db7d8e77c4072c",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_500m_south.csv",
+      "sha256": "a095363a3a1f9e183ca9276d7ef38760d9ac8ed4cde5dad8126364206c032269",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_500m_west.csv",
+      "sha256": "71f4e64b5c78aadc8ab2413f8702bbcd2375a83004a4c318566b5becacfb38b7",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_repaired.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_weights/shunyi_zero_shift.csv",
+      "sha256": "b660076b41e89793886dff5aec67c71abb523d9d628c0d2585043a599e6b81a2",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_after_daily.csv",
+      "sha256": "0520168d090da9cc8c25af4c832b3cd4c777ad3df35bb53dd2d0e87fdaa08e34",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_after_hourly.csv",
+      "sha256": "b9ed3c42421a2344d80df2e7ce31ee9660f699edc37ef2ae1f6deaf302e3328f",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_before_daily.csv",
+      "sha256": "0520168d090da9cc8c25af4c832b3cd4c777ad3df35bb53dd2d0e87fdaa08e34",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_before_hourly.csv",
+      "sha256": "b9ed3c42421a2344d80df2e7ce31ee9660f699edc37ef2ae1f6deaf302e3328f",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_prior_method_check_daily.csv",
+      "sha256": "23fc5ed4e3a19defeba0b7bc91e5577fa0765ee41d5026cb3bdc69f3be6b2dde",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/beijing_urban_prior_method_check_hourly.csv",
+      "sha256": "1697a7e20e1257a4e48d84d880c83a49c1e0a9e5371dd55b8044d8b4f67ad9f7",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/buffer_zero_daily.csv",
+      "sha256": "2f7d40413906f32a59c2b4320ad1c7cb50ff2c6ee5c451343a0cd5fab7cd1975",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/buffer_zero_hourly.csv",
+      "sha256": "af56d5fba52c9ea797667bb1df26da8781c3a5ffe1a795b5137bd5f8e248e20d",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/component_union_daily.csv",
+      "sha256": "2f7d40413906f32a59c2b4320ad1c7cb50ff2c6ee5c451343a0cd5fab7cd1975",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/component_union_hourly.csv",
+      "sha256": "af56d5fba52c9ea797667bb1df26da8781c3a5ffe1a795b5137bd5f8e248e20d",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/make_valid_linework_polygon_daily.csv",
+      "sha256": "2f7d40413906f32a59c2b4320ad1c7cb50ff2c6ee5c451343a0cd5fab7cd1975",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/make_valid_linework_polygon_hourly.csv",
+      "sha256": "af56d5fba52c9ea797667bb1df26da8781c3a5ffe1a795b5137bd5f8e248e20d",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/make_valid_structure_daily.csv",
+      "sha256": "2f7d40413906f32a59c2b4320ad1c7cb50ff2c6ee5c451343a0cd5fab7cd1975",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/make_valid_structure_hourly.csv",
+      "sha256": "af56d5fba52c9ea797667bb1df26da8781c3a5ffe1a795b5137bd5f8e248e20d",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_east_daily.csv",
+      "sha256": "909cc99d4b4de9bbe8ec78e693aff948f89b845e099b7880ad205ecd6fc3dca7",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_east_hourly.csv",
+      "sha256": "198b080eb9cb3b28d145b543034e485927912a2bb883b1586aafb54bcc85865a",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_north_daily.csv",
+      "sha256": "2f0a1ffe479c4a13c1879d0c3f485848e0511b08914abafb984f136fe405c76b",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_north_hourly.csv",
+      "sha256": "f63923bee19ecaab448a5e5d70146b03a5870e20a05ef920e501e254835d5754",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_south_daily.csv",
+      "sha256": "bb9840bd3a6dc0b8d8697c4ec6fa9f58f90b9a36299680d58b6237de2c25435e",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_south_hourly.csv",
+      "sha256": "00f58e4c9fe81aa8495d65f7abae3a20665099b32724e9e415869474ee077b6a",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_west_daily.csv",
+      "sha256": "028791e98300cb065ccd631355cd6f89b81ebe8b3009cb24b7f1b3dac46b3257",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_100m_west_hourly.csv",
+      "sha256": "a95daa9e56b8b608d12582f3730c14b3355bfaea1630797b2d2b4d46491b69ec",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_east_daily.csv",
+      "sha256": "50bc8cafa88c9147b8ddb33d0167be404968dcb3ed101ad235b59c04be34ec1a",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_east_hourly.csv",
+      "sha256": "75e3ed3ad26cbaf8af854b6478c2d59392ce71be5f32f29d1d6e75b1e158bb1e",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_north_daily.csv",
+      "sha256": "24893c0c20f3e444efdf2ed71b3d8279812447de8aca13eed9519f19fb7c94e8",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_north_hourly.csv",
+      "sha256": "b3cadea2eac23fc8888ea67e3880f96e8c10af32d572989a7e5ba6f8a41674bf",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_south_daily.csv",
+      "sha256": "12a810dc797faab0df39047de628a186f14385cec308cbea50f995aace23823b",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_south_hourly.csv",
+      "sha256": "32f67dd6fca52dc9ec4639002a08b65ac9faca6cd9ce78faa57a3081789b9984",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_west_daily.csv",
+      "sha256": "84fe2d375524c4a6ebc6b4863b005e0af859d6b007ca01ae34e6df36e8c65382",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_500m_west_hourly.csv",
+      "sha256": "d539d30867d137b304a8e46574ac094c19772d3bc7a03e09866790b670dbd275",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_original_valid_components_daily.csv",
+      "sha256": "85d4dda4fdc93c29ececa87f15dc8d613129a3405b6d752f044ba90af341c4fa",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_original_valid_components_hourly.csv",
+      "sha256": "c1aa3c9c241d08948304dabd09085d373582bfdfc8969eea80042f1db39b6d65",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_repaired_daily.csv",
+      "sha256": "2f7d40413906f32a59c2b4320ad1c7cb50ff2c6ee5c451343a0cd5fab7cd1975",
+      "repeat_identical": true
+    },
+    {
+      "path": "era5_metrics/shunyi_repaired_hourly.csv",
+      "sha256": "af56d5fba52c9ea797667bb1df26da8781c3a5ffe1a795b5137bd5f8e248e20d",
+      "repeat_identical": true
+    },
+    {
+      "path": "geometry_weights_audit.json",
+      "sha256": "63063b345f8970d0d810e6f110486598d5e9169683de731a5ef46f50f1874c4d",
+      "repeat_identical": true
+    },
+    {
+      "path": "sensitivity_results.json",
+      "sha256": "f5b444bb010032a677ccd4175263069d55f67a9dffeb700035ac75765f96f901",
+      "repeat_identical": true
+    }
+  ]
+}

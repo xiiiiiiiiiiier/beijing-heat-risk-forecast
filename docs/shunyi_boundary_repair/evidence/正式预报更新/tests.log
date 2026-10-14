@@ -1,0 +1,569 @@
+C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\fastapi\testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_all_45_units_preserve_published_values (test_api.ForecastAPITest.test_all_45_units_preserve_published_values) ... ok
+test_bad_or_missing_data_is_503 (test_api.ForecastAPITest.test_bad_or_missing_data_is_503) ... Cannot read unit manifest
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 158, in units
+    manifest = json.loads((data_dir / "static/units/manifest.json").read_text(encoding="utf-8-sig"))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11934\\AppData\\Local\\Temp\\tmpnu2cgisv\\static\\units\\manifest.json'
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 181, in read
+    with (data_dir / directory / "units" / f"{unit_id}_{suffix}.csv").open(encoding="utf-8-sig", newline="") as stream:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\AppData\Local\Programs\Python\Python311\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\11934\\AppData\\Local\\Temp\\tmpnu2cgisv\\current\\units\\beijing_core_hourly.csv'
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 184, in read
+    raise ValueError("Empty or mixed forecast runs")
+ValueError: Empty or mixed forecast runs
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in read
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in <listcomp>
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\pydantic\main.py", line 790, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 9 validation errors for Hourly
+update_time
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+source
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+model
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+forecast_time
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+temperature_c
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+relative_humidity_pct
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+wind_speed_ms
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+point_count
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+weight_sum
+  Field required [type=missing, input_value={'bad': '1', 'header': '2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/missing
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in read
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in <listcomp>
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\pydantic\main.py", line 790, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for Hourly
+source
+  String should have at least 1 character [type=string_too_short, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_too_short
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 190, in read
+    raise ValueError("Repeated or unordered forecast times")
+ValueError: Repeated or unordered forecast times
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 193, in read
+    raise ValueError("Expected 168 continuous forecast hours")
+ValueError: Expected 168 continuous forecast hours
+Cannot serve forecast beijing_core/hourly
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in read
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in <listcomp>
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\pydantic\main.py", line 790, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 9 validation errors for Hourly
+update_time
+  Value error, Invalid isoformat string: '' [type=value_error, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+source
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type
+model
+  Input should be a valid string [type=string_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/string_type
+forecast_time
+  Value error, Invalid isoformat string: '' [type=value_error, input_value='', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+temperature_c
+  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/float_type
+relative_humidity_pct
+  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/float_type
+wind_speed_ms
+  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/float_type
+point_count
+  Input should be a valid integer [type=int_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/int_type
+weight_sum
+  Input should be a valid number [type=float_type, input_value=None, input_type=NoneType]
+    For further information visit https://errors.pydantic.dev/2.14/v/float_type
+ok
+test_complete_snapshot_and_revision (test_api.ForecastAPITest.test_complete_snapshot_and_revision) ... ok
+test_cors_allows_only_configured_frontend (test_api.ForecastAPITest.test_cors_allows_only_configured_frontend) ... ok
+test_health_and_openapi (test_api.ForecastAPITest.test_health_and_openapi) ... ok
+test_mixed_snapshot_cannot_start (test_api.ForecastAPITest.test_mixed_snapshot_cannot_start) ... ok
+test_stale_and_incomplete_day_remain_explicit (test_api.ForecastAPITest.test_stale_and_incomplete_day_remain_explicit) ... Cannot serve forecast beijing_core/health_risk
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in read
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in <listcomp>
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\pydantic\main.py", line 790, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for HealthRisk
+at_c
+  Input should be a finite number [type=finite_number, input_value='NaN', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.14/v/finite_number
+Cannot serve forecast beijing_core/health_risk
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in read
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\api.py", line 182, in <listcomp>
+    rows = [row_type.model_validate(row) for row in csv.DictReader(stream)]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\test_libs\pydantic\main.py", line 790, in model_validate
+    return cls.__pydantic_validator__.validate_python(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+pydantic_core._pydantic_core.ValidationError: 1 validation error for HealthRisk
+  Value error, Day completeness contradicts hour_count [type=value_error, input_value={'update_time': '2026-10-...', 'model': 'ecmwf_ifs'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.14/v/value_error
+ok
+test_truncated_daily_snapshot_rejected (test_api.ForecastAPITest.test_truncated_daily_snapshot_rejected) ... ok
+test_unknown_and_unsupported_requests (test_api.ForecastAPITest.test_unknown_and_unsupported_requests) ... ok
+test_core_runs_complete_chain_with_10_points (test_baoding_pipeline.BaodingPipelineTest.test_core_runs_complete_chain_with_10_points) ... ok
+test_entry_imports_from_repository_root (test_baoding_pipeline.BaodingPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_batch_cli_still_dispatches_baoding (test_baoding_pipeline.BaodingPipelineTest.test_existing_batch_cli_still_dispatches_baoding) ... ok
+test_mancheng_runs_through_the_same_entry_with_20_points (test_baoding_pipeline.BaodingPipelineTest.test_mancheng_runs_through_the_same_entry_with_20_points) ... ok
+test_new_entry_reproduces_committed_core_results (test_baoding_pipeline.BaodingPipelineTest.test_new_entry_reproduces_committed_core_results) ... ok
+test_recognizes_exactly_the_4_at_units (test_baoding_pipeline.BaodingPipelineTest.test_recognizes_exactly_the_4_at_units) ... ok
+test_core_result_matches_legacy_chain_column_for_column (test_beijing_pipeline.BeijingPipelineTest.test_core_result_matches_legacy_chain_column_for_column) ... ok
+test_core_save_writes_unit_outputs_and_legacy_aliases (test_beijing_pipeline.BeijingPipelineTest.test_core_save_writes_unit_outputs_and_legacy_aliases) ... ok
+test_entry_imports_from_repository_root (test_beijing_pipeline.BeijingPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_risk_threshold_boundaries_are_unchanged (test_beijing_pipeline.BeijingPipelineTest.test_existing_risk_threshold_boundaries_are_unchanged) ... ok
+test_other_district_runs_the_complete_shared_chain (test_beijing_pipeline.BeijingPipelineTest.test_other_district_runs_the_complete_shared_chain) ... ok
+test_recognizes_exactly_the_11_independent_units (test_beijing_pipeline.BeijingPipelineTest.test_recognizes_exactly_the_11_independent_units) ... ok
+test_core_runs_hourly_daily_at_and_both_age_risks (test_handan_pipeline.HandanPipelineTest.test_core_runs_hourly_daily_at_and_both_age_risks) ... ok
+test_entry_imports_from_repository_root (test_handan_pipeline.HandanPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_batch_cli_still_dispatches_handan (test_handan_pipeline.HandanPipelineTest.test_existing_batch_cli_still_dispatches_handan) ... ok
+test_fengfeng_runs_through_the_same_entry_with_11_points (test_handan_pipeline.HandanPipelineTest.test_fengfeng_runs_through_the_same_entry_with_11_points) ... ok
+test_new_entry_reproduces_committed_core_results (test_handan_pipeline.HandanPipelineTest.test_new_entry_reproduces_committed_core_results) ... ok
+test_recognizes_exactly_the_4_at_units (test_handan_pipeline.HandanPipelineTest.test_recognizes_exactly_the_4_at_units) ... ok
+test_daily_uses_hourly_peak_and_marks_incomplete_day (test_heat_index.HeatIndexTest.test_daily_uses_hourly_peak_and_marks_incomplete_day) ... ok
+test_noaa_examples_and_ecmwf_boundaries (test_heat_index.HeatIndexTest.test_noaa_examples_and_ecmwf_boundaries) ... ok
+test_core_runs_hourly_daily_at_and_both_age_risks (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_core_runs_hourly_daily_at_and_both_age_risks) ... ok
+test_entry_imports_from_repository_root (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_batch_cli_still_dispatches_shijiazhuang (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_existing_batch_cli_still_dispatches_shijiazhuang) ... ok
+test_formal_chain_reproduces_committed_core_results (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_formal_chain_reproduces_committed_core_results) ... ok
+test_jingxing_mining_runs_through_the_same_entry_with_6_points (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_jingxing_mining_runs_through_the_same_entry_with_6_points) ... ok
+test_recognizes_exactly_the_5_at_units (test_shijiazhuang_pipeline.ShijiazhuangPipelineTest.test_recognizes_exactly_the_5_at_units) ... ok
+test_builder_rejects_invalid_source_with_district_code (test_shunyi_geometry.ShunyiGeometryTest.test_builder_rejects_invalid_source_with_district_code) ... ok
+test_generated_shunyi_is_valid_and_matches_source (test_shunyi_geometry.ShunyiGeometryTest.test_generated_shunyi_is_valid_and_matches_source) ... ok
+test_points_reject_invalid_geometry (test_shunyi_geometry.ShunyiGeometryTest.test_points_reject_invalid_geometry) ... ok
+test_repair_preserves_both_original_faces_and_their_hole (test_shunyi_geometry.ShunyiGeometryTest.test_repair_preserves_both_original_faces_and_their_hole) ... ok
+test_source_shunyi_is_valid (test_shunyi_geometry.ShunyiGeometryTest.test_source_shunyi_is_valid) ... ok
+test_beijing_core_reproduces_existing_points (test_spatial.SpatialTest.test_beijing_core_reproduces_existing_points) ... ok
+test_each_city_has_one_union_of_all_urban_districts (test_spatial.SpatialTest.test_each_city_has_one_union_of_all_urban_districts) ... ok
+test_core_runs_hourly_daily_at_and_both_age_risks (test_tangshan_pipeline.TangshanPipelineTest.test_core_runs_hourly_daily_at_and_both_age_risks) ... ok
+test_entry_imports_from_repository_root (test_tangshan_pipeline.TangshanPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_batch_cli_still_dispatches_tangshan (test_tangshan_pipeline.TangshanPipelineTest.test_existing_batch_cli_still_dispatches_tangshan) ... ok
+test_guye_runs_through_the_same_entry_with_9_points (test_tangshan_pipeline.TangshanPipelineTest.test_guye_runs_through_the_same_entry_with_9_points) ... ok
+test_new_entry_reproduces_committed_core_results (test_tangshan_pipeline.TangshanPipelineTest.test_new_entry_reproduces_committed_core_results) ... ok
+test_recognizes_exactly_the_4_at_units (test_tangshan_pipeline.TangshanPipelineTest.test_recognizes_exactly_the_4_at_units) ... ok
+test_batch_daily_compatibility_uses_the_formal_daily_result (test_tianjin_pipeline.TianjinPipelineTest.test_batch_daily_compatibility_uses_the_formal_daily_result) ... ok
+test_binhai_runs_through_the_same_entry_with_54_points (test_tianjin_pipeline.TianjinPipelineTest.test_binhai_runs_through_the_same_entry_with_54_points) ... ok
+test_core_runs_hourly_daily_at_and_both_age_risks (test_tianjin_pipeline.TianjinPipelineTest.test_core_runs_hourly_daily_at_and_both_age_risks) ... ok
+test_entry_imports_from_repository_root (test_tianjin_pipeline.TianjinPipelineTest.test_entry_imports_from_repository_root) ... ok
+test_existing_batch_cli_still_dispatches_tianjin (test_tianjin_pipeline.TianjinPipelineTest.test_existing_batch_cli_still_dispatches_tianjin) ... ok
+test_formal_daily_chain_reproduces_committed_tianjin_core_result (test_tianjin_pipeline.TianjinPipelineTest.test_formal_daily_chain_reproduces_committed_tianjin_core_result) ... ok
+test_recognizes_exactly_the_11_at_units (test_tianjin_pipeline.TianjinPipelineTest.test_recognizes_exactly_the_11_at_units) ... ok
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��8.851 �� 16.310 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+
+========== �������������������� ==========
+������ 168 ��Сʱ
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+
+========== �ļ����� ==========
+���ĳ�����СʱԤ���ѱ��棺
+C:\Users\11934\AppData\Local\Temp\tmpxrxdksk9\current\beijing_center_forecast_hourly.csv
+�����C:\Users\11934\AppData\Local\Temp\tmpxrxdksk9\current\beijing_center_forecast_daily.csv
+
+����ѱ��棺
+C:\Users\11934\AppData\Local\Temp\tmpxrxdksk9\processed\beijing_center_health_risk.csv
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��11.785 �� 19.982 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��7.168 �� 16.089 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+δ������ЧӦ���շּ�    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+
+========== �������� QC ==========
+������������7
+��������������0
+AT��Χ��37.345 �� 37.345 ��
+
+0�C64�����ͳ�ƣ�
+risk_0_64
+�߷���    7
+Name: count, dtype: int64
+
+��65�����ͳ�ƣ�
+risk_65_plus
+�з���    7
+Name: count, dtype: int64
+
+�������� QC��ͨ��
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0
+Open-Meteo HTTP 503; retry 2/3 in 15s
+test_persistent_http_errors_fail_without_infinite_retry (test_units.UnitProcessingTest.test_persistent_http_errors_fail_without_infinite_retry) ... ok
+test_rejects_grid_shift (test_units.UnitProcessingTest.test_rejects_grid_shift) ... ok
+test_retries_network_timeout (test_units.UnitProcessingTest.test_retries_network_timeout) ... ok
+Open-Meteo HTTP 503; retry 3/3 in 30s
+Open-Meteo ReadTimeout; retry 2/3
+Open-Meteo ReadTimeout; retry 3/3
+Open-Meteo HTTP 408; retry 2/3 in 15s
+Fetched 1/1 points
+Open-Meteo HTTP 429; retry 2/3 in 61s
+Fetched 1/1 points
+Open-Meteo HTTP 500; retry 2/3 in 15s
+Fetched 1/1 points
+Open-Meteo HTTP 502; retry 2/3 in 15s
+Fetched 1/1 points
+Open-Meteo HTTP 503; retry 2/3 in 15s
+Fetched 1/1 points
+Open-Meteo HTTP 504; retry 2/3 in 15s
+Fetched 1/1 points
+test_retries_temporary_http_errors_before_accepting_forecast (test_units.UnitProcessingTest.test_retries_temporary_http_errors_before_accepting_forecast) ... ok
+test_shared_grid_values_make_separate_unit_average (test_units.UnitProcessingTest.test_shared_grid_values_make_separate_unit_average) ... ok
+test_weighted_hourly_parses_api_timestamp_strings (test_units.UnitProcessingTest.test_weighted_hourly_parses_api_timestamp_strings) ... ok
+
+----------------------------------------------------------------------
+Ran 61 tests in 9.415s
+
+OK
+hourly ������168���ظ�ʱ�䣺0
+��Ȼ�գ�7��������7����������0

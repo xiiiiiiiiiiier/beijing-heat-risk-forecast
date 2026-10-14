@@ -1,0 +1,245 @@
+{
+  "sample": "1991-06, 720 hours, 29 complete Beijing days",
+  "data_sha256": "ce96e9a97e78d9488323208d12dce20eebf4c6ade2709f9d54f29f8ebfba5e2b",
+  "grid": "ERA5-Land regular 0.1 degree cell-area intersections; NOT IFS O1280 weights",
+  "scenarios": "100/500 m translations east/west/north/south in equal-area projection; hypothetical stress tests, not measured coordinate error",
+  "support": "Same month-fixed jointly valid input grid support for all scenarios; weights normalized over available support. No coastline/water or historical-boundary assessment.",
+  "humidity": "100*exp(17.625*Td/(243.04+Td)-17.625*T/(243.04+T)); Celsius; fixed approximation across scenarios",
+  "humidity_qc": {
+    "raw_max_pct": 100.01740651174455,
+    "above_100_count": 336,
+    "max_dewpoint_excess_C": 0.002685546875
+  },
+  "skipped": [
+    {
+      "unit": "beijing_110113",
+      "reason": "Invalid geometry; no authorized permanent geometry repair."
+    }
+  ],
+  "rows": [
+    {
+      "unit": "beijing_urban",
+      "distance_m": 100,
+      "direction": "east",
+      "baseline_points": 226,
+      "scenario_points": 226,
+      "point_set_changes": 0,
+      "weight_total_variation": 0.0011998521153620551,
+      "max_abs_T_hourly_C": 0.007635526698823725,
+      "max_abs_HI_hourly_C": 0.007622283995580403,
+      "worst_HI_hour_UTC_index": 31,
+      "worst_HI_baseline_input": {
+        "T_C": 24.945979258779385,
+        "RH_pct": 50.54243270084639,
+        "branch_selector_F": 76.78564796756294,
+        "HI_C": 24.880915537534964
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 24.9536147854782,
+        "RH_pct": 50.51217592345372,
+        "branch_selector_F": 76.79936807875495,
+        "HI_C": 24.888537821530527
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 100,
+      "direction": "west",
+      "baseline_points": 226,
+      "scenario_points": 223,
+      "point_set_changes": 3,
+      "weight_total_variation": 0.0011968904832158872,
+      "max_abs_T_hourly_C": 0.007646723539433964,
+      "max_abs_HI_hourly_C": 0.007633545929873975,
+      "worst_HI_hour_UTC_index": 31,
+      "worst_HI_baseline_input": {
+        "T_C": 24.945979258779385,
+        "RH_pct": 50.54243270084639,
+        "branch_selector_F": 76.78564796756294,
+        "HI_C": 24.880915537534964
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 24.938332535239958,
+        "RH_pct": 50.57272737385818,
+        "branch_selector_F": 76.77190758488919,
+        "HI_C": 24.873281991605104
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 100,
+      "direction": "north",
+      "baseline_points": 226,
+      "scenario_points": 226,
+      "point_set_changes": 0,
+      "weight_total_variation": 0.0012922608253688199,
+      "max_abs_T_hourly_C": 0.00810495676619638,
+      "max_abs_HI_hourly_C": 1.0102604846026964,
+      "worst_HI_hour_UTC_index": 683,
+      "worst_HI_baseline_input": {
+        "T_C": 26.48332795166469,
+        "RH_pct": 64.00071434281692,
+        "branch_selector_F": 80.00750661570245,
+        "HI_C": 27.675527539481077
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 26.477819815280352,
+        "RH_pct": 64.01707437877415,
+        "branch_selector_F": 79.99748069878106,
+        "HI_C": 26.665267054878367
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 100,
+      "direction": "south",
+      "baseline_points": 226,
+      "scenario_points": 226,
+      "point_set_changes": 0,
+      "weight_total_variation": 0.001299122820362611,
+      "max_abs_T_hourly_C": 0.008117968490161331,
+      "max_abs_HI_hourly_C": 0.008117132368308688,
+      "worst_HI_hour_UTC_index": 635,
+      "worst_HI_baseline_input": {
+        "T_C": 26.673497853357514,
+        "RH_pct": 71.03917667890644,
+        "branch_selector_F": 80.5323315948,
+        "HI_C": 28.388992576412868
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 26.678817422834936,
+        "RH_pct": 71.02922969737062,
+        "branch_selector_F": 80.54215182704624,
+        "HI_C": 28.397109708781315
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 500,
+      "direction": "east",
+      "baseline_points": 226,
+      "scenario_points": 229,
+      "point_set_changes": 3,
+      "weight_total_variation": 0.006015625882439299,
+      "max_abs_T_hourly_C": 0.03789755397718153,
+      "max_abs_HI_hourly_C": 0.03782726029984573,
+      "worst_HI_hour_UTC_index": 31,
+      "worst_HI_baseline_input": {
+        "T_C": 24.945979258779385,
+        "RH_pct": 50.54243270084639,
+        "branch_selector_F": 76.78564796756294,
+        "HI_C": 24.880915537534964
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 24.983876812756552,
+        "RH_pct": 50.39190893586227,
+        "branch_selector_F": 76.85373703610264,
+        "HI_C": 24.918742797834803
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 500,
+      "direction": "west",
+      "baseline_points": 226,
+      "scenario_points": 224,
+      "point_set_changes": 2,
+      "weight_total_variation": 0.0059663344855222615,
+      "max_abs_T_hourly_C": 0.03835085668598026,
+      "max_abs_HI_hourly_C": 1.0175054028976938,
+      "worst_HI_hour_UTC_index": 683,
+      "worst_HI_baseline_input": {
+        "T_C": 26.48332795166469,
+        "RH_pct": 64.00071434281692,
+        "branch_selector_F": 80.00750661570245,
+        "HI_C": 27.675527539481077
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 26.47073086316351,
+        "RH_pct": 64.03227721153483,
+        "branch_selector_F": 79.98443984585009,
+        "HI_C": 26.658022136583384
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 1,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 500,
+      "direction": "north",
+      "baseline_points": 226,
+      "scenario_points": 226,
+      "point_set_changes": 0,
+      "weight_total_variation": 0.006439077078369471,
+      "max_abs_T_hourly_C": 0.04042150704631453,
+      "max_abs_HI_hourly_C": 1.0324956430252499,
+      "worst_HI_hour_UTC_index": 683,
+      "worst_HI_baseline_input": {
+        "T_C": 26.48332795166469,
+        "RH_pct": 64.00071434281692,
+        "branch_selector_F": 80.00750661570245,
+        "HI_C": 27.675527539481077
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 26.45582880763179,
+        "RH_pct": 64.08259434878312,
+        "branch_selector_F": 79.95745741362049,
+        "HI_C": 26.643031896455827
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 1,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    },
+    {
+      "unit": "beijing_urban",
+      "distance_m": 500,
+      "direction": "south",
+      "baseline_points": 226,
+      "scenario_points": 225,
+      "point_set_changes": 3,
+      "weight_total_variation": 0.006563530798993683,
+      "max_abs_T_hourly_C": 0.04063373165593376,
+      "max_abs_HI_hourly_C": 0.04069743334294529,
+      "worst_HI_hour_UTC_index": 635,
+      "worst_HI_baseline_input": {
+        "T_C": 26.673497853357514,
+        "RH_pct": 71.03917667890644,
+        "branch_selector_F": 80.5323315948,
+        "HI_C": 28.388992576412868
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 26.700153538357977,
+        "RH_pct": 70.98935579279076,
+        "branch_selector_F": 80.58154004862715,
+        "HI_C": 28.42969000975575
+      },
+      "max_abs_AT_daily_C": null,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": null,
+      "AT_65_plus_changed_days": null
+    }
+  ]
+}

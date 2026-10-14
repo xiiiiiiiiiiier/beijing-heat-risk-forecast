@@ -1,0 +1,409 @@
+{
+  "sample": "C:\\Users\\11934\\Desktop\\qixiangshuju\\era5_land_1991_06_jingjinji.nc",
+  "sample_sha256_before_and_after": "ce96e9a97e78d9488323208d12dce20eebf4c6ade2709f9d54f29f8ebfba5e2b",
+  "ERA5_unmodified": true,
+  "period": "720 UTC hours 1991-06-01 through 1991-06-30; 29 complete Beijing days 1991-06-02 through 1991-06-30",
+  "day_grouping": "fixed UTC+8, same as previous audit; not historical Asia/Shanghai daylight saving time",
+  "grid": "ERA5-Land regular 0.1 degree cell-area intersection; NOT IFS O1280",
+  "projection": "Albers equal area lat_1=25 lat_2=47 lat_0=0 lon_0=105 datum=WGS84",
+  "humidity": "same previous audit water-phase Magnus; RH tiny excess clipped to 100% only for diagnostics",
+  "humidity_qc": {
+    "raw_max_pct": 100.01740651174455,
+    "above_100_count": 336,
+    "max_dewpoint_excess_C": 0.002685546875
+  },
+  "support": "month-fixed jointly finite T/RH/u/v grids; normalization over same available support",
+  "formal_status": "Repository Shunyi: T/weather and daily AT+age classes; HI is only diagnostic here. All ERA5 files are diagnostic, not live forecast outputs.",
+  "baseline_limit": "No trusted direct invalid-MultiPolygon overlay baseline. Valid original components have zero area overlap and supply an independently evaluated face-area baseline.",
+  "baseline_weight_check": {
+    "points": 23,
+    "weight_sum": 1.0,
+    "min_positive_weight": 8.356866087967698e-05,
+    "geometry_area_km2": 1009.3393933746144,
+    "all_grid_coverage_km2": 1009.3393933746137,
+    "valid_support_area_km2": 1009.3393933746133,
+    "valid_support_coverage_fraction": 0.9999999999999989,
+    "coverage_error_m2": -1.0728836059570312e-06
+  },
+  "original_component_baseline_comparison": {
+    "baseline_kind": "sum of independent original valid Polygon cell intersections; NOT original invalid MultiPolygon overlay",
+    "weight_max_abs_difference": 4.371503159461554e-16,
+    "max_abs_T_hourly_C": 7.105427357601002e-15,
+    "max_abs_HI_hourly_C": 1.7053025658242404e-13,
+    "max_abs_AT_daily_C": 7.105427357601002e-15,
+    "HI_daily_class_changed_days": 0,
+    "AT_0_64_changed_days": 0,
+    "AT_65_plus_changed_days": 0
+  },
+  "candidate_comparisons": {
+    "buffer_zero": {
+      "weight_max_abs_difference": 0.0,
+      "max_abs_T_hourly_C": 0.0,
+      "max_abs_HI_hourly_C": 0.0,
+      "max_abs_AT_daily_C": 0.0,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0
+    },
+    "component_union": {
+      "weight_max_abs_difference": 0.0,
+      "max_abs_T_hourly_C": 0.0,
+      "max_abs_HI_hourly_C": 0.0,
+      "max_abs_AT_daily_C": 0.0,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0
+    },
+    "make_valid_linework_polygon": {
+      "weight_max_abs_difference": 0.0,
+      "max_abs_T_hourly_C": 0.0,
+      "max_abs_HI_hourly_C": 0.0,
+      "max_abs_AT_daily_C": 0.0,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0
+    },
+    "make_valid_structure": {
+      "weight_max_abs_difference": 0.0,
+      "max_abs_T_hourly_C": 0.0,
+      "max_abs_HI_hourly_C": 0.0,
+      "max_abs_AT_daily_C": 0.0,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0
+    }
+  },
+  "beijing_urban_comparison": {
+    "weight_max_abs_difference": 0.0,
+    "before_weight_check": {
+      "points": 226,
+      "weight_sum": 1.0,
+      "min_positive_weight": 1.5663592126763542e-07,
+      "geometry_area_km2": 16407.336942440805,
+      "all_grid_coverage_km2": 16407.336942440357,
+      "valid_support_area_km2": 16407.33694244036,
+      "valid_support_coverage_fraction": 0.999999999999973,
+      "coverage_error_m2": -0.0004425048828125
+    },
+    "after_weight_check": {
+      "points": 226,
+      "weight_sum": 1.0,
+      "min_positive_weight": 1.5663592126763542e-07,
+      "geometry_area_km2": 16407.336942440805,
+      "all_grid_coverage_km2": 16407.336942440357,
+      "valid_support_area_km2": 16407.33694244036,
+      "valid_support_coverage_fraction": 0.999999999999973,
+      "coverage_error_m2": -0.0004425048828125
+    },
+    "max_abs_T_hourly_C": 0.0,
+    "max_abs_HI_hourly_C": 0.0,
+    "max_abs_AT_daily_C": 0.0,
+    "HI_daily_class_changed_days": 0,
+    "AT_0_64_changed_days": 0,
+    "AT_65_plus_changed_days": 0
+  },
+  "previous_audit_method_reproduction": {
+    "max_abs_T_hourly_C": {
+      "previous": 0.007635526698823725,
+      "reproduced": 0.007635526698823725
+    },
+    "max_abs_HI_hourly_C": {
+      "previous": 0.007622283995580403,
+      "reproduced": 0.007622283995580403
+    },
+    "HI_daily_class_changed_days": {
+      "previous": 0,
+      "reproduced": 0
+    }
+  },
+  "rows": [
+    {
+      "unit": "beijing_110113",
+      "distance_m": 100,
+      "direction": "east",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.003387066072090879,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 0.00013039956840659955,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746148,
+        "valid_support_area_km2": 1009.3393933746147,
+        "valid_support_coverage_fraction": 1.0000000000000004,
+        "coverage_error_m2": 3.5762786865234375e-07
+      },
+      "max_abs_T_hourly_C": 0.012220071821186451,
+      "max_abs_HI_hourly_C": 0.011945465497110064,
+      "max_abs_AT_daily_C": 0.0025635233111280797,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-20 17:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 22.968781963257456,
+        "RH_pct": 57.839590862796854,
+        "branch_selector_F": 73.22022829583231,
+        "HI_C": 22.900126831017953
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 22.981002035078642,
+        "RH_pct": 57.77175691185035,
+        "branch_selector_F": 73.24173013372712,
+        "HI_C": 22.912072296515063
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 100,
+      "direction": "west",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.0033348399448271523,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 4.7113345731761824e-05,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746148,
+        "valid_support_area_km2": 1009.3393933746147,
+        "valid_support_coverage_fraction": 1.0000000000000004,
+        "coverage_error_m2": 3.5762786865234375e-07
+      },
+      "max_abs_T_hourly_C": 0.01219324026365598,
+      "max_abs_HI_hourly_C": 0.011919511246802017,
+      "max_abs_AT_daily_C": 0.0025238481032836546,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-20 17:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 22.968781963257456,
+        "RH_pct": 57.839590862796854,
+        "branch_selector_F": 73.22022829583231,
+        "HI_C": 22.900126831017953
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 22.9565887229938,
+        "RH_pct": 57.90725485658717,
+        "branch_selector_F": 73.19877317558807,
+        "HI_C": 22.88820731977115
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 100,
+      "direction": "north",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.004120320430525305,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 4.7782533266525675e-05,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746136,
+        "valid_support_area_km2": 1009.3393933746136,
+        "valid_support_coverage_fraction": 0.9999999999999992,
+        "coverage_error_m2": -8.344650268554688e-07
+      },
+      "max_abs_T_hourly_C": 0.0133025784392089,
+      "max_abs_HI_hourly_C": 0.013039014917207936,
+      "max_abs_AT_daily_C": 0.005318394970778684,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-16 19:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 16.088601933851272,
+        "RH_pct": 59.36669740295907,
+        "branch_selector_F": 60.25257504394844,
+        "HI_C": 15.6958750244158
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 16.10190451229048,
+        "RH_pct": 59.29556351363441,
+        "branch_selector_F": 60.276045270799415,
+        "HI_C": 15.708914039333008
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 100,
+      "direction": "south",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.004071064158489431,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 0.00012612382307404537,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746141,
+        "valid_support_area_km2": 1009.3393933746141,
+        "valid_support_coverage_fraction": 0.9999999999999998,
+        "coverage_error_m2": -2.384185791015625e-07
+      },
+      "max_abs_T_hourly_C": 0.013380096410049447,
+      "max_abs_HI_hourly_C": 0.013105806538971976,
+      "max_abs_AT_daily_C": 0.005289519612620808,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-16 19:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 16.088601933851272,
+        "RH_pct": 59.36669740295907,
+        "branch_selector_F": 60.25257504394844,
+        "HI_C": 15.6958750244158
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 16.075221837441223,
+        "RH_pct": 59.43894976231374,
+        "branch_selector_F": 60.22898459217829,
+        "HI_C": 15.682769217876828
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 500,
+      "direction": "east",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.0170494405733686,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 9.523046215222133e-05,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746146,
+        "valid_support_area_km2": 1009.3393933746146,
+        "valid_support_coverage_fraction": 1.0000000000000002,
+        "coverage_error_m2": 2.384185791015625e-07
+      },
+      "max_abs_T_hourly_C": 0.0607800333238373,
+      "max_abs_HI_hourly_C": 0.059413679733424374,
+      "max_abs_AT_daily_C": 0.01298286935502091,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-20 17:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 22.968781963257456,
+        "RH_pct": 57.839590862796854,
+        "branch_selector_F": 73.22022829583231,
+        "HI_C": 22.900126831017953
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 23.029561996581293,
+        "RH_pct": 57.50215939633279,
+        "branch_selector_F": 73.32717291935248,
+        "HI_C": 22.959540510751378
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 500,
+      "direction": "west",
+      "point_set_changes": 1,
+      "weight_total_variation": 0.016449501486983664,
+      "weight_check": {
+        "points": 22,
+        "weight_sum": 0.9999999999999999,
+        "min_positive_weight": 0.0008936310807360349,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746145,
+        "valid_support_area_km2": 1009.3393933746146,
+        "valid_support_coverage_fraction": 1.0000000000000002,
+        "coverage_error_m2": 2.384185791015625e-07
+      },
+      "max_abs_T_hourly_C": 0.0608770316478946,
+      "max_abs_HI_hourly_C": 0.05951152877646848,
+      "max_abs_AT_daily_C": 0.01243770848198622,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-20 17:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 22.968781963257456,
+        "RH_pct": 57.839590862796854,
+        "branch_selector_F": 73.22022829583231,
+        "HI_C": 22.900126831017953
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 22.90790493160956,
+        "RH_pct": 58.17732865074852,
+        "branch_selector_F": 73.11310754403468,
+        "HI_C": 22.840615302241485
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 500,
+      "direction": "north",
+      "point_set_changes": 1,
+      "weight_total_variation": 0.020700083802413297,
+      "weight_check": {
+        "points": 22,
+        "weight_sum": 1.0,
+        "min_positive_weight": 9.814306704112862e-05,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746145,
+        "valid_support_area_km2": 1009.3393933746145,
+        "valid_support_coverage_fraction": 1.0000000000000002,
+        "coverage_error_m2": 1.1920928955078125e-07
+      },
+      "max_abs_T_hourly_C": 0.06621769303525582,
+      "max_abs_HI_hourly_C": 0.06493278369276823,
+      "max_abs_AT_daily_C": 0.02665750590807292,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-16 19:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 16.088601933851272,
+        "RH_pct": 59.36669740295907,
+        "branch_selector_F": 60.25257504394844,
+        "HI_C": 15.6958750244158
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 16.15481962688653,
+        "RH_pct": 59.01467913956958,
+        "branch_selector_F": 60.36945405459542,
+        "HI_C": 15.760807808108568
+      }
+    },
+    {
+      "unit": "beijing_110113",
+      "distance_m": 500,
+      "direction": "south",
+      "point_set_changes": 0,
+      "weight_total_variation": 0.020308511017416188,
+      "weight_check": {
+        "points": 23,
+        "weight_sum": 1.0,
+        "min_positive_weight": 0.00027774842779738896,
+        "geometry_area_km2": 1009.3393933746144,
+        "all_grid_coverage_km2": 1009.3393933746147,
+        "valid_support_area_km2": 1009.3393933746145,
+        "valid_support_coverage_fraction": 1.0000000000000002,
+        "coverage_error_m2": 1.1920928955078125e-07
+      },
+      "max_abs_T_hourly_C": 0.0674963929441148,
+      "max_abs_HI_hourly_C": 0.06608525521166086,
+      "max_abs_AT_daily_C": 0.02648559957162533,
+      "HI_daily_class_changed_days": 0,
+      "AT_0_64_changed_days": 0,
+      "AT_65_plus_changed_days": 0,
+      "worst_HI_time_UTC": "1991-06-16 19:00:00+00:00",
+      "worst_HI_baseline_input": {
+        "T_C": 16.088601933851272,
+        "RH_pct": 59.36669740295907,
+        "branch_selector_F": 60.25257504394844,
+        "HI_C": 15.6958750244158
+      },
+      "worst_HI_scenario_input": {
+        "T_C": 16.021105540907158,
+        "RH_pct": 59.733281372464475,
+        "branch_selector_F": 60.13362158456745,
+        "HI_C": 15.62978976920414
+      }
+    }
+  ]
+}

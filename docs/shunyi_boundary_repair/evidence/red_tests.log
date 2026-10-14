@@ -1,0 +1,62 @@
+test_builder_rejects_invalid_source_with_district_code (test_shunyi_geometry.ShunyiGeometryTest.test_builder_rejects_invalid_source_with_district_code) ... ERROR
+test_generated_shunyi_is_valid_and_matches_source (test_shunyi_geometry.ShunyiGeometryTest.test_generated_shunyi_is_valid_and_matches_source) ... FAIL
+test_points_reject_invalid_geometry (test_shunyi_geometry.ShunyiGeometryTest.test_points_reject_invalid_geometry) ... ERROR
+test_source_shunyi_is_valid (test_shunyi_geometry.ShunyiGeometryTest.test_source_shunyi_is_valid) ... FAIL
+
+======================================================================
+ERROR: test_builder_rejects_invalid_source_with_district_code (test_shunyi_geometry.ShunyiGeometryTest.test_builder_rejects_invalid_source_with_district_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\tests\test_shunyi_geometry.py", line 26, in test_builder_rejects_invalid_source_with_district_code
+    build_units(directory)
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\scripts\build_spatial.py", line 46, in build_units
+    "geometry": unary_union([shape(districts[c]["geometry"]) for c in urban_codes])}
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-13\c-users-11934-desktop-qixiangshuju-era5-2\work\inspection_libs\shapely\ops.py", line 123, in unary_union
+    return shapely.union_all(geoms, axis=None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-13\c-users-11934-desktop-qixiangshuju-era5-2\work\inspection_libs\shapely\decorators.py", line 184, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-13\c-users-11934-desktop-qixiangshuju-era5-2\work\inspection_libs\shapely\set_operations.py", line 545, in union_all
+    return lib.unary_union(collections, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+shapely.errors.GEOSException: TopologyException: side location conflict at 116.5 40.5. This can occur if the input geometry is invalid.
+
+======================================================================
+ERROR: test_points_reject_invalid_geometry (test_shunyi_geometry.ShunyiGeometryTest.test_points_reject_invalid_geometry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\tests\test_shunyi_geometry.py", line 31, in test_points_reject_invalid_geometry
+    calculate_points(geometry)
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\scripts\build_spatial.py", line 84, in calculate_points
+    intersect_area = polygon.intersection(area).area
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-13\c-users-11934-desktop-qixiangshuju-era5-2\work\inspection_libs\shapely\decorators.py", line 184, in wrapper
+    result = func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\11934\Documents\Codex\2026-10-13\c-users-11934-desktop-qixiangshuju-era5-2\work\inspection_libs\shapely\geometry\base.py", line 706, in intersection
+    return shapely.lib.intersection_scalar(self, other)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+shapely.errors.GEOSException: TopologyException: side location conflict at 0 533.46229676888231. This can occur if the input geometry is invalid.
+
+======================================================================
+FAIL: test_generated_shunyi_is_valid_and_matches_source (test_shunyi_geometry.ShunyiGeometryTest.test_generated_shunyi_is_valid_and_matches_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\tests\test_shunyi_geometry.py", line 42, in test_generated_shunyi_is_valid_and_matches_source
+    self.assertTrue(generated.is_valid, explain_validity(generated))
+AssertionError: False is not true : Self-intersection[116.597880097152 40.0519039932611]
+
+======================================================================
+FAIL: test_source_shunyi_is_valid (test_shunyi_geometry.ShunyiGeometryTest.test_source_shunyi_is_valid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\11934\Documents\Codex\2026-10-14\superpowers-plugin-superpowers-openai-curated-remote\work\repository\tests\test_shunyi_geometry.py", line 36, in test_source_shunyi_is_valid
+    self.assertTrue(geometry.is_valid, explain_validity(geometry))
+AssertionError: False is not true : Self-intersection[116.597880097152 40.0519039932611]
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.685s
+
+FAILED (failures=2, errors=2)

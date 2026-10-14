@@ -1,0 +1,197 @@
+{
+  "commit": "0daab15d8813a4c52e88b708fd307b151e1d9b73",
+  "versions": {
+    "python": "3.11.6 (tags/v3.11.6:8b6ee5b, Oct  2 2023, 14:57:12) [MSC v.1935 64 bit (AMD64)]",
+    "shapely": "2.2.0",
+    "geos": "3.14.1",
+    "pyproj": "3.7.2",
+    "numpy": "2.4.6",
+    "pandas": "3.0.6"
+  },
+  "original_reason": "Self-intersection[116.597880097152 40.0519039932611]",
+  "original_components_valid": [
+    true,
+    true
+  ],
+  "original_component_areas_km2": [
+    992.2274263807717,
+    17.11196699384282
+  ],
+  "original_signed_area_sum_km2": 1009.3393933746146,
+  "original_overlap_m2": 0,
+  "selected_area_km2": 1009.3393933746144,
+  "area_delta_from_component_sum_m2": -2.384185791015625e-07,
+  "original_boundary_set_densified_hausdorff_m": 1387.2181524528285,
+  "retained_original_vertices_not_in_repair": 0,
+  "shared_edges_length_m": 5426.1941034743995,
+  "shared_edges_outside_selected_boundary_m": 5426.1941034743995,
+  "new_boundary_edges_outside_original_boundary_length_m": 0.0,
+  "removed_edge_interpretation": "Internal duplicate shared seams removed; all new boundary edges are original edges. Densified all-ring Hausdorff is NOT an external-boundary position error.",
+  "candidates": {
+    "component_union": {
+      "valid": true,
+      "geometry_type": "Polygon",
+      "components": 1,
+      "holes": 1,
+      "area_km2": 1009.3393933746144,
+      "symmetric_difference_reference_m2": 0.0,
+      "boundary_hausdorff_reference_m": 0.0,
+      "lost_original_component_area_m2": [
+        0.0,
+        0.0
+      ]
+    },
+    "buffer_zero": {
+      "valid": true,
+      "geometry_type": "Polygon",
+      "components": 1,
+      "holes": 1,
+      "area_km2": 1009.3393933746141,
+      "symmetric_difference_reference_m2": 0.0,
+      "boundary_hausdorff_reference_m": 0.0,
+      "lost_original_component_area_m2": [
+        0.0,
+        0.0
+      ]
+    },
+    "make_valid_linework_polygon": {
+      "valid": true,
+      "geometry_type": "Polygon",
+      "components": 1,
+      "holes": 1,
+      "area_km2": 1009.339393374614,
+      "symmetric_difference_reference_m2": 0.0,
+      "boundary_hausdorff_reference_m": 0.0,
+      "lost_original_component_area_m2": [
+        0.0,
+        0.0
+      ]
+    },
+    "make_valid_structure": {
+      "valid": true,
+      "geometry_type": "Polygon",
+      "components": 1,
+      "holes": 1,
+      "area_km2": 1009.3393933746144,
+      "symmetric_difference_reference_m2": 0.0,
+      "boundary_hausdorff_reference_m": 0.0,
+      "lost_original_component_area_m2": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "weights": {
+    "beijing_110113": {
+      "old_geometry_valid": false,
+      "new_geometry_valid": true,
+      "old_points": 21,
+      "new_points": 21,
+      "point_set_changes": 0,
+      "weight_sum": 0.9999999999999998,
+      "min_weight": 0.0016224400487923139,
+      "area_LAEA_km2": 1009.3394343529959,
+      "covered_km2": 1009.339434352996,
+      "coverage_error_km2": 1.1368683772161603e-13,
+      "max_abs_old_stored_weight_change": 3.136380044566067e-14,
+      "weight_total_variation": 1.1897004648792064e-13,
+      "old_stored_area_sum_km2": 1009.3394343529866,
+      "symmetric_difference_old_valid_m2": null,
+      "boundary_hausdorff_old_valid_m": null
+    },
+    "beijing_urban": {
+      "old_geometry_valid": true,
+      "new_geometry_valid": true,
+      "old_points": 246,
+      "new_points": 246,
+      "point_set_changes": 0,
+      "weight_sum": 1.0,
+      "min_weight": 4.2552596595048384e-06,
+      "area_LAEA_km2": 16407.3366010841,
+      "covered_km2": 16407.336601084113,
+      "coverage_error_km2": 1.4551915228366852e-11,
+      "max_abs_old_stored_weight_change": 1.8474805019152996e-15,
+      "weight_total_variation": 8.18508964524746e-14,
+      "old_stored_area_sum_km2": 16407.336601084105,
+      "symmetric_difference_old_valid_m2": 0.0,
+      "boundary_hausdorff_old_valid_m": 0.0
+    }
+  },
+  "unchanged_units": {
+    "beijing_core": true,
+    "beijing_110109": true,
+    "beijing_110111": true,
+    "beijing_110112": true,
+    "beijing_110114": true,
+    "beijing_110115": true,
+    "beijing_110116": true,
+    "beijing_110117": true,
+    "beijing_110118": true,
+    "beijing_110119": true,
+    "tianjin_urban": true,
+    "tianjin_core": true,
+    "tianjin_120110": true,
+    "tianjin_120111": true,
+    "tianjin_120112": true,
+    "tianjin_120113": true,
+    "tianjin_120114": true,
+    "tianjin_120115": true,
+    "tianjin_120116": true,
+    "tianjin_120117": true,
+    "tianjin_120118": true,
+    "tianjin_120119": true,
+    "shijiazhuang_urban": true,
+    "shijiazhuang_core": true,
+    "shijiazhuang_130107": true,
+    "shijiazhuang_130109": true,
+    "shijiazhuang_130110": true,
+    "shijiazhuang_130111": true,
+    "tangshan_urban": true,
+    "tangshan_core": true,
+    "tangshan_130204": true,
+    "tangshan_130208": true,
+    "tangshan_130209": true,
+    "handan_urban": true,
+    "handan_core": true,
+    "handan_130406": true,
+    "handan_130407": true,
+    "handan_130408": true,
+    "baoding_urban": true,
+    "baoding_core": true,
+    "baoding_130607": true,
+    "baoding_130608": true,
+    "baoding_130609": true
+  },
+  "files": [
+    {
+      "path": "data/boundary_sources/110000.json",
+      "before_sha256": "a55de8f0fca8f2b4b43868e2e289fda34188ec7fb2925709325c5d7ed556ba3f",
+      "after_sha256": "16e7a6dffdbc58dc7c4c9e963006f8bdaf106a3a20d63ee3bffce785e6b1c314"
+    },
+    {
+      "path": "data/static/units/beijing_110113.geojson",
+      "before_sha256": "c2a59fd2e9be4e797a1fdb582787bc0f2635fb4193955a608e3f2d2bc954ffba",
+      "after_sha256": "8e4b7f484e326e80b4b7742bcdd8bedd29b14fc0a9a57fe46b177e2021295c19"
+    },
+    {
+      "path": "data/static/units/beijing_110113_points.csv",
+      "before_sha256": "0460e31def3a38433d072f16351e23b813f6999e896ba475d1b5c1126a785e42",
+      "after_sha256": "f6982b87001743801844bb11870f48e9428ee10b0213f25be186b094fc31ab62"
+    },
+    {
+      "path": "data/static/units/beijing_urban.geojson",
+      "before_sha256": "ca640034bfcd49c747c6ea36d17c6527e8867ae1ae5e1c9e66599102dd68ca98",
+      "after_sha256": "ca640034bfcd49c747c6ea36d17c6527e8867ae1ae5e1c9e66599102dd68ca98"
+    },
+    {
+      "path": "data/static/units/beijing_urban_points.csv",
+      "before_sha256": "6443a4e7bc83c632a0c08cad393261c141ae5b301389579f8864f9ad0ef31695",
+      "after_sha256": "96058aa6e743f62d29149922e2d67ef0d3b85bf322b92e5aead8200293d9a49b"
+    },
+    {
+      "path": "data/static/units/manifest.json",
+      "before_sha256": "43d05842ee091d09b8c81de248e8c02a6a8140bee97eeb9ca55214cf54f5515c",
+      "after_sha256": "43d05842ee091d09b8c81de248e8c02a6a8140bee97eeb9ca55214cf54f5515c"
+    }
+  ]
+}
