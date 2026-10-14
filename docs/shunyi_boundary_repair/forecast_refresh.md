@@ -36,4 +36,4 @@ python -m scripts.validate_api_snapshot
 python -m unittest discover -s tests -v
 ```
 
-`audit_beijing_refresh.py`只读重算并核查，不改写仓库预报；无需再次请求实时API。审计默认比较基线 `196f7cee`，仓库历史中保留该提交。本轮推送修复分支，不合并至main、不部署。
+`audit_beijing_refresh.py`只读重算并核查，不改写仓库预报；无需再次请求实时API。审计默认比较基线 `196f7cee`，仓库历史中保留该提交。首次推送使用修复分支；用户随后明确授权改 main 和 Render、删除修复分支，并要求网站不改。最终版本合入 main，由现有 Render On Commit 自动部署；预报工作流的 Pages 发布步骤已移除，保留已发布网站文件。
